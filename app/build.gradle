@@ -28,6 +28,9 @@ android {
         versionCode config.versionCode
         versionName config.versionName
 
+        buildConfigField "String", "DB_NAME", project.property('DATABASE_NAME')
+        buildConfigField "String", "PREFS_NAME", project.property('PREFERENCES_NAME')
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -37,12 +40,12 @@ android {
             debuggable true //todo change
             signingConfig signingConfigs.adichallenge
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            //buildConfigField "String", "API_BASE_URL", project.property('API_BASE_URL_REMOTE')
+            buildConfigField "String", "API_BASE_URL", project.property('API_BASE_URL_PROD')
         }
 
         debug {
             applicationIdSuffix ".dev"
-            //buildConfigField "String", "API_BASE_URL", project.property('API_BASE_URL_LOCAL')
+            buildConfigField "String", "API_BASE_URL", project.property('API_BASE_URL_DEBUG')
         }
     }
 
@@ -66,7 +69,7 @@ dependencies {
     testImplementation "com.google.truth:truth:${libs.truth}"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${libs.coroutines_test}"
     testImplementation "android.arch.core:core-testing:${libs.arch_test}"
-    androidTestImplementation "androidx.test.ext:junit:${libs.junit_test}"
+    androidTestImplementation "androidx.test.ext:junit:${libs.junit_inst}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${libs.espresso}"
 
     //core android

@@ -1,11 +1,11 @@
-package tech.medina.adichallenge.ui.list
+package tech.medina.adichallenge.ui.product.list
 
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModel
-import tech.medina.adichallenge.ui.detail.ItemDetailActivity
+import tech.medina.adichallenge.ui.product.detail.ItemDetailActivity
 import tech.medina.adichallenge.databinding.ActivityItemListBinding
-import tech.medina.adichallenge.ui.base.BaseActivity
+import tech.medina.adichallenge.ui.common.BaseActivity
 
 /**
  * An activity representing a list of Pings. This activity

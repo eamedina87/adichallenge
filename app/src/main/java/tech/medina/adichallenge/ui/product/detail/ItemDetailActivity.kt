@@ -1,11 +1,11 @@
-package tech.medina.adichallenge.ui.detail
+package tech.medina.adichallenge.ui.product.detail
 
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModel
 import tech.medina.adichallenge.databinding.ActivityItemListBinding
-import tech.medina.adichallenge.ui.base.BaseActivity
-import tech.medina.adichallenge.ui.list.ItemListActivity
+import tech.medina.adichallenge.ui.common.BaseActivity
+import tech.medina.adichallenge.ui.product.list.ItemListActivity
 
 /**
  * An activity representing a single Item detail screen. This

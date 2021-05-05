@@ -1,4 +1,4 @@
-package tech.medina.adichallenge.ui.dialog
+package tech.medina.adichallenge.ui.common.dialog
 
 import android.os.Bundle
 import android.view.LayoutInflater

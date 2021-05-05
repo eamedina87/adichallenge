@@ -1,4 +1,4 @@
-package tech.medina.adichallenge.ui.detail
+package tech.medina.adichallenge.ui.product.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModel
 import tech.medina.adichallenge.databinding.FragmentItemDetailBinding
-import tech.medina.adichallenge.ui.base.BaseFragment
+import tech.medina.adichallenge.ui.common.BaseFragment
 
 
 /**

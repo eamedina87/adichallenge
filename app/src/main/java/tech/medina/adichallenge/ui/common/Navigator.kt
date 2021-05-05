@@ -1,9 +1,8 @@
-package tech.medina.adichallenge.ui.navigation
+package tech.medina.adichallenge.ui.common
 
 import android.content.Intent
 import android.os.Bundle
-import tech.medina.adichallenge.ui.base.BaseActivity
-import tech.medina.adichallenge.ui.dialog.DialogWithTwoOptions
+import tech.medina.adichallenge.ui.common.dialog.DialogWithTwoOptions
 import tech.medina.adichallenge.ui.utils.Utils
 import javax.inject.Inject
 import javax.inject.Singleton

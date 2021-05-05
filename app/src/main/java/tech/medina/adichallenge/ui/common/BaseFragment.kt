@@ -1,4 +1,4 @@
-package tech.medina.adichallenge.ui.base
+package tech.medina.adichallenge.ui.common
 
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import tech.medina.adichallenge.ui.navigation.Navigator
 import javax.inject.Inject
 
 @AndroidEntryPoint
