@@ -1,0 +1,102 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+def config = rootProject.ext.configuration
+def libs = rootProject.ext.libraries
+
+android {
+    compileSdkVersion config.compileSdkVersion
+    buildToolsVersion config.buildToolsVersion
+
+    signingConfigs {
+        adichallenge {
+            storeFile file('../driver-tracking.keys')
+            storePassword 'drivertracking.2021'
+            keyAlias 'drivertracking'
+            keyPassword 'drivertracking.2021'
+        }
+    }
+
+    defaultConfig {
+        applicationId config.applicationId
+        minSdkVersion config.minSdkVersion
+        targetSdkVersion config.targetSdkVersion
+        versionCode config.versionCode
+        versionName config.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            debuggable true //todo change
+            signingConfig signingConfigs.adichallenge
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            //buildConfigField "String", "API_BASE_URL", project.property('API_BASE_URL_REMOTE')
+        }
+
+        debug {
+            applicationIdSuffix ".dev"
+            //buildConfigField "String", "API_BASE_URL", project.property('API_BASE_URL_LOCAL')
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    //testing
+    testImplementation "junit:junit:${libs.junit}"
+    testImplementation "io.mockk:mockk:${libs.mockk}"
+    testImplementation "com.google.truth:truth:${libs.truth}"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${libs.coroutines_test}"
+    testImplementation "android.arch.core:core-testing:${libs.arch_test}"
+    androidTestImplementation "androidx.test.ext:junit:${libs.junit_test}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${libs.espresso}"
+
+    //core android
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:${rootProject.ext.kotlin_version}"
+    implementation "androidx.core:core-ktx:${libs.ktx}"
+    implementation "androidx.appcompat:appcompat:${libs.appcompat}"
+    implementation "com.google.android.material:material:${libs.material}"
+    implementation "androidx.recyclerview:recyclerview:${libs.recyclerview}"
+    implementation "androidx.constraintlayout:constraintlayout:${libs.constraint}"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:${libs.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${libs.lifecycle}"
+    implementation "androidx.activity:activity-ktx:${libs.activity}"
+    implementation "androidx.fragment:fragment-ktx:${libs.fragment}"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:${libs.swiperefresh}"
+
+    //database - room
+    implementation "androidx.room:room-runtime:${libs.room}"
+    kapt "androidx.room:room-compiler:${libs.room}"
+    implementation "androidx.room:room-ktx:${libs.room}"
+
+    //dependency injection - hilt
+    implementation "com.google.dagger:hilt-android:${libs.hilt_android}"
+    kapt "com.google.dagger:hilt-android-compiler:${libs.hilt_android}"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:${libs.hilt_lifecycle}"
+    kapt "androidx.hilt:hilt-compiler:${libs.hilt_compiler}"
+
+    //api - retrofit
+    implementation "com.squareup.retrofit2:retrofit:${libs.retrofit}"
+    implementation "com.squareup.retrofit2:converter-gson:${libs.retrofit}"
+
+    //threading - coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${libs.coroutines}"
+}

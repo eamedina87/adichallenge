@@ -1,0 +1,42 @@
+ext {
+
+    kotlin_version = '1.4.32'
+    gradle_version = '4.1.3'
+
+    configuration = [
+        applicationId       : "tech.medina.adichallenge",
+        buildToolsVersion   : "30.0.2",
+        compileSdkVersion   : 30,
+        minSdkVersion       : 21,
+        targetSdkVersion    : 30,
+        versionCode         : 1,
+        versionName         : "1",
+    ]
+
+    libraries = [
+        activity        : "1.3.0-alpha07",
+        arch_test       : "1.1.1",
+        appcompat       : "1.2.0",
+        constraint      : "2.0.4",
+        coroutines      : "1.4.1",
+        coroutines_test : "1.4.1",
+        espresso        : "3.3.0",
+        fragment        : "1.3.3",
+        junit           : "4.+",
+        junit_inst      : "1.1.2",
+        hilt_android    : "2.31.1-alpha",
+        hilt_compiler   : "1.0.0",
+        hilt_lifecycle  : "1.0.0-alpha03",
+        hilt_plugin     : "2.29.1-alpha",
+        ktx             : "1.3.2",
+        lifecycle       : "2.3.1",
+        material        : "1.3.0",
+        mockk           : "1.10.2",
+        recyclerview    : "1.2.0",
+        room            : "2.3.0",
+        retrofit        : "2.9.0",
+        swiperefresh   : "1.1.0",
+        truth           : "1.1",
+
+    ]
+}
