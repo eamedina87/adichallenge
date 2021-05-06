@@ -10,22 +10,21 @@
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="horizontal"
     android:showDividers="middle"
-    tools:context=".ui.product.list.ItemListActivity">
+    tools:context=".ui.product.list.ProductListActivity">
 
     <!--
     This layout is a two-pane layout for the Items master/detail flow.
     -->
 
-    <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/item_list"
-        android:name="tech.medina.adichallenge.ItemListFragment"
+        android:name="tech.medina.adichallenge.ProductListFragment"
         android:layout_width="@dimen/item_width"
         android:layout_height="match_parent"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         app:layoutManager="LinearLayoutManager"
-        tools:context=".ui.product.list.ItemListActivity"
+        tools:context=".ui.product.list.ProductListActivity"
         tools:listitem="@layout/item_list_content" />
 
     <FrameLayout

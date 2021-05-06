@@ -1,7 +1,7 @@
 package tech.medina.adichallenge.domain.usecase
 
 import tech.medina.adichallenge.data.api.dto.ProductDto
-import tech.medina.adichallenge.data.mapper.Mapper
+import tech.medina.adichallenge.data.mapper.IMapper
 import tech.medina.adichallenge.data.repository.IProductRepository
 import tech.medina.adichallenge.domain.models.DataState
 import tech.medina.adichallenge.domain.models.Product
@@ -13,16 +13,16 @@ interface IGetAllProductsUseCase {
 
 class GetAllProductsUseCase @Inject constructor(
     private val repository: IProductRepository,
-    private val mapper: Mapper<ProductDto, Product>
+    private val IMapper: IMapper<ProductDto, Product>
 ): IGetAllProductsUseCase {
 
     override suspend operator fun invoke(): DataState<List<Product>> =
         try {
             DataState.Success(repository.getAllProducts().map {
-                mapper.map(it)
+                IMapper.map(it)
             })
         } catch (e: Exception) {
             DataState.Error(e)
         }
-    
+
 }

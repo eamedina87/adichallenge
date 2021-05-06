@@ -1,21 +1,21 @@
-package tech.medina.adichallenge.ui.product.detail
+package tech.medina.adichallenge.ui.review
 
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModel
+import tech.medina.adichallenge.ui.product.detail.ProductDetailActivity
 import tech.medina.adichallenge.databinding.ActivityItemListBinding
 import tech.medina.adichallenge.ui.common.BaseActivity
-import tech.medina.adichallenge.ui.product.list.ItemListActivity
+import tech.medina.adichallenge.ui.product.list.ProductListActivity
 
 /**
  * An activity representing a single Item detail screen. This
  * activity is only used on narrow width devices. On tablet-size devices,
  * item details are presented side-by-side with a list of items
- * in a [ItemListActivity].
+ * in a [ProductListActivity].
  */
-class ItemDetailActivity : BaseActivity() {
+class ReviewActivity : BaseActivity() {
 
-    override val viewModel: ViewModel? = null
     private lateinit var binding: ActivityItemListBinding
 
     override fun getBindingRoot(): View {
@@ -26,6 +26,5 @@ class ItemDetailActivity : BaseActivity() {
     override fun initView(savedInstanceState: Bundle?) {
 
     }
-
 
 }

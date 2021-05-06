@@ -1,5 +1,5 @@
 package tech.medina.adichallenge.data.mapper
 
-interface Mapper<O, D> {
+interface IMapper<O, D> {
     fun map(input: O): D
 }

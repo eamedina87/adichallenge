@@ -14,7 +14,6 @@ abstract class BaseActivity: AppCompatActivity() {
 
     @Inject
     lateinit var navigator: Navigator
-    protected abstract val viewModel: ViewModel?
 
     protected abstract fun getBindingRoot(): View
     protected abstract fun initView(savedInstanceState: Bundle?)

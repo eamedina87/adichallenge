@@ -7,8 +7,8 @@ import tech.medina.adichallenge.domain.models.Review
 import javax.inject.Inject
 
 class ProductMapper @Inject constructor(
-    private val reviewMapper: Mapper<ReviewDto, Review>
-) : Mapper<ProductDto, Product> {
+    private val reviewMapper: IMapper<ReviewDto, Review>
+) : IMapper<ProductDto, Product> {
     override fun map(input: ProductDto): Product =
         Product(
             id = input.id ?: "",
