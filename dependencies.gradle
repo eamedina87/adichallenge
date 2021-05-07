@@ -15,7 +15,7 @@ ext {
 
     libraries = [
         activity        : "1.3.0-alpha07",
-        arch_test       : "1.1.1",
+        arch_test       : "2.1.0",
         appcompat       : "1.2.0",
         constraint      : "2.0.4",
         coroutines      : "1.4.1",

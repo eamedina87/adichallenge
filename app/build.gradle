@@ -68,7 +68,7 @@ dependencies {
     testImplementation "io.mockk:mockk:${libs.mockk}"
     testImplementation "com.google.truth:truth:${libs.truth}"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${libs.coroutines_test}"
-    testImplementation "android.arch.core:core-testing:${libs.arch_test}"
+    testImplementation "androidx.arch.core:core-testing:${libs.arch_test}"
     androidTestImplementation "androidx.test.ext:junit:${libs.junit_inst}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${libs.espresso}"
 

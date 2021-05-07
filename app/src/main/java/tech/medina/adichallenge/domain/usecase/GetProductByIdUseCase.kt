@@ -13,13 +13,13 @@ interface IGetProductByIdUseCase {
 
 class GetProductByIdUseCase @Inject constructor(
     private val repository: IProductRepository,
-    private val IMapper: IMapper<ProductDto, Product>
+    private val mapper: IMapper<ProductDto, Product>
 ): IGetProductByIdUseCase {
 
     override suspend operator fun invoke(id: String): DataState<Product> =
         try {
             val result = repository.getProductById(id)
-            DataState.Success(IMapper.map(result))
+            DataState.Success(mapper.map(result))
         } catch (e: Exception) {
             DataState.Error(e)
         }
