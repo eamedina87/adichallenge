@@ -1,25 +1,26 @@
 package tech.medina.adichallenge.domain.usecase
 
 import com.google.common.truth.Truth
-import io.mockk.*
+import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.every
+import io.mockk.mockk
+import junit.framework.TestCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Test
+
 import tech.medina.adichallenge.base.BaseTest
 import tech.medina.adichallenge.data.api.dto.ProductDto
 import tech.medina.adichallenge.data.mapper.IMapper
-import tech.medina.adichallenge.data.mapper.ProductMapper
-import tech.medina.adichallenge.data.mapper.ReviewMapper
 import tech.medina.adichallenge.data.repository.IProductRepository
 import tech.medina.adichallenge.domain.models.DataState
 import tech.medina.adichallenge.domain.models.Product
 import tech.medina.adichallenge.domain.models.Review
 import tech.medina.adichallenge.utils.FakeApi
-import tech.medina.adichallenge.utils.FakeRepo
-
 
 @ExperimentalCoroutinesApi
-class GetAllProductsUseCaseTest : BaseTest() {
+class GetProductByIdUseCaseTest : BaseTest() {
 
     private val repository = mockk<IProductRepository>() {
         coEvery { getAllProducts() } returns FakeApi.productList
@@ -30,11 +31,12 @@ class GetAllProductsUseCaseTest : BaseTest() {
     }
 
     @Test
-    fun `get all products successfully`() = dispatcher.runBlockingTest {
-        val useCase = GetAllProductsUseCase(repository, productMapper)
-        val result = useCase()
-        coVerify {
-            repository.getAllProducts()
+    fun `get product by id successfully`() = dispatcher.runBlockingTest {
+        val useCase = GetProductByIdUseCase(repository, productMapper)
+        val id = "id"
+        val result = useCase(id)
+        coVerify (exactly = 1) {
+            repository.getProductById(id)
             productMapper.map(any())
         }
         with (result) {
@@ -44,12 +46,13 @@ class GetAllProductsUseCaseTest : BaseTest() {
     }
 
     @Test
-    fun `get all products with exception`() = dispatcher.runBlockingTest {
-        coEvery { repository.getAllProducts() } throws Exception("An error occurred")
-        val useCase = GetAllProductsUseCase(repository, productMapper)
-        val result = useCase()
+    fun `get product by id with exception`() = dispatcher.runBlockingTest {
+        coEvery { repository.getProductById(any()) } throws Exception("An error occurred")
+        val useCase = GetProductByIdUseCase(repository, productMapper)
+        val id = "id"
+        val result = useCase(id)
         coVerify {
-            repository.getAllProducts()
+            repository.getProductById(id)
         }
         coVerify (exactly = 0) {
             productMapper.map(any())
