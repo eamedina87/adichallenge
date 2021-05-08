@@ -20,6 +20,9 @@ abstract class BaseFragment : Fragment() {
     @Inject
     lateinit var navigator: Navigator
 
+    @Inject
+    lateinit var imageLoader: ImageLoader
+
     abstract val viewModel : ViewModel?
 
     protected abstract fun getBindingRoot(inflater: LayoutInflater, container: ViewGroup?): View

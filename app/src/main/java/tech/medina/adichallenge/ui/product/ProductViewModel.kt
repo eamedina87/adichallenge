@@ -24,17 +24,37 @@ class ProductViewModel @Inject constructor(
     companion object {
         const val KEY_PRODUCT_LIST = "product.list"
         const val KEY_PRODUCT_DETAIL = "product.detail"
+        const val KEY_PRODUCT_ERROR = "product.error"
+        const val KEY_PRODUCT_LOADER = "product.loading"
     }
 
-    val products = savedState.getLiveData<DataState<List<Product>>>(KEY_PRODUCT_LIST, DataState.Loading)
-    val productDetail = savedState.getLiveData<DataState<Product>>(KEY_PRODUCT_DETAIL, DataState.Loading)
+    val error = savedState.getLiveData<Any?>(KEY_PRODUCT_ERROR)
+    val loader = savedState.getLiveData<Boolean>(KEY_PRODUCT_LOADER)
+    val products = savedState.getLiveData<List<Product>>(KEY_PRODUCT_LIST)
+    val productDetail = savedState.getLiveData<Product>(KEY_PRODUCT_DETAIL)
 
-    fun getAllProducts() {
+    init {
+        getAllProducts()
+    }
+
+    private fun getAllProducts() {
         viewModelScope.launch {
+            savedState.set(KEY_PRODUCT_LOADER, true)
             val result = withContext(dispatcher) {
                 getAllProductsUseCase()
             }
-            savedState.set(KEY_PRODUCT_LIST, result)
+            when (result) {
+                is DataState.Success -> {
+                    savedState.set(KEY_PRODUCT_LOADER, false)
+                    savedState.set(KEY_PRODUCT_LIST, result.result)
+                }
+                is DataState.Error -> {
+                    savedState.set(KEY_PRODUCT_LOADER, false)
+                    savedState.set(KEY_PRODUCT_ERROR, result.error)
+                }
+                is DataState.Loading -> savedState.set(KEY_PRODUCT_LOADER, true)
+            }
+
         }
     }
 
@@ -43,7 +63,9 @@ class ProductViewModel @Inject constructor(
             val result = withContext(dispatcher) {
                 getProductByIdUseCase(id)
             }
-            savedState.set(KEY_PRODUCT_DETAIL, result)
+            if (result is DataState.Success) {
+                savedState.set(KEY_PRODUCT_DETAIL, result.result)
+            }
         }
     }
 

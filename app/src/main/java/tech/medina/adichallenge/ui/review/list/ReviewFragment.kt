@@ -1,13 +1,13 @@
-package tech.medina.adichallenge.ui.review
+package tech.medina.adichallenge.ui.review.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
 import tech.medina.adichallenge.databinding.FragmentItemDetailBinding
 import tech.medina.adichallenge.ui.common.BaseFragment
+import tech.medina.adichallenge.ui.review.ReviewViewModel
 
 
 /**

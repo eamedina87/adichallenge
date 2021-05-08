@@ -13,10 +13,10 @@ class ProductDtoMapper @Inject constructor(
         ProductDto(
             id = input.id,
             reviews = input.reviews.map { reviewMapper.map(it) },
-            currency = "",
-            description = "",
-            image = "",
-            name = "",
-            price = -1.0
+            currency = input.currency,
+            description = input.description,
+            image = input.imageUrl,
+            name = input.name,
+            price = input.price
         )
 }

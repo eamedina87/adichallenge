@@ -1,4 +1,4 @@
-package tech.medina.adichallenge.ui.review
+package tech.medina.adichallenge.ui.review.list
 
 import android.os.Bundle
 import android.view.View

@@ -14,10 +14,10 @@ android {
 
     signingConfigs {
         adichallenge {
-            storeFile file('../driver-tracking.keys')
-            storePassword 'drivertracking.2021'
-            keyAlias 'drivertracking'
-            keyPassword 'drivertracking.2021'
+            storeFile file('../adichallenge_keys')
+            storePassword '@dich@llenge!'
+            keyAlias 'adichallenge'
+            keyPassword '@dich@llenge!'
         }
     }
 
@@ -45,6 +45,7 @@ android {
 
         debug {
             applicationIdSuffix ".dev"
+            debuggable true
             buildConfigField "String", "API_BASE_URL", project.property('API_BASE_URL_DEBUG')
         }
     }
@@ -102,4 +103,8 @@ dependencies {
 
     //threading - coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${libs.coroutines}"
+
+    //image loading - glide
+    implementation "com.github.bumptech.glide:glide:${libs.glide}"
+
 }

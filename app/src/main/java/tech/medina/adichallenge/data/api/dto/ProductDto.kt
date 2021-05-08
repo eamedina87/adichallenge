@@ -14,7 +14,7 @@ data class ProductDto(
     @SerializedName("name")
     val name: String?,
     @SerializedName("price")
-    val price: Double?,
+    val price: String?,
     @SerializedName("reviews")
     val reviews: List<ReviewDto?>?
 )

@@ -9,6 +9,7 @@ import dagger.hilt.components.SingletonComponent
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import tech.medina.adichallenge.BuildConfig
 import tech.medina.adichallenge.data.api.AdiChallengeApi
 import tech.medina.adichallenge.data.repository.IProductRepository
 import tech.medina.adichallenge.data.repository.ProductRepository
@@ -28,7 +29,7 @@ abstract class DataModuleBinds {
 
 @InstallIn(SingletonComponent::class)
 @Module
-abstract class DataModuleProvides {
+class DataModuleProvides {
 
     @Provides
     fun provideGson(): Gson {
@@ -46,7 +47,7 @@ abstract class DataModuleProvides {
         converter: Converter.Factory
     ): AdiChallengeApi {
         return Retrofit.Builder()
-            .baseUrl("http://localhost:3001/")
+            .baseUrl(BuildConfig.API_BASE_URL)
             .addConverterFactory(converter)
             .build()
             .create(AdiChallengeApi::class.java)
