@@ -14,6 +14,7 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <color name="background">@color/black</color>
-    <color name="textMain">@color/grey_light</color>
+    <color name="background">@color/black_light</color>
+    <color name="text_main">@color/white</color>
+    <color name="text_background">@color/black</color>
 </resources>

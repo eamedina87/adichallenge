@@ -11,6 +11,7 @@ import tech.medina.adichallenge.domain.models.DataState
 import tech.medina.adichallenge.domain.models.Product
 import tech.medina.adichallenge.domain.usecase.IGetAllProductsUseCase
 import tech.medina.adichallenge.domain.usecase.IGetProductByIdUseCase
+import tech.medina.adichallenge.domain.models.SORT
 import javax.inject.Inject
 
 @HiltViewModel
@@ -66,6 +67,20 @@ class ProductViewModel @Inject constructor(
             if (result is DataState.Success) {
                 savedState.set(KEY_PRODUCT_DETAIL, result.result)
             }
+        }
+    }
+
+    fun sortProductsBy(sort: SORT) {
+        val products = savedState.get<List<Product>>(KEY_PRODUCT_LIST)
+        products?.let {  list ->
+            val sortedList = when (sort) {
+                SORT.DEFAULT -> list
+                SORT.AZ -> list.sortedBy { it.name }
+                SORT.ZA -> list.sortedByDescending { it.name }
+                SORT.PRICE_LOW_HIGH -> list.sortedBy { it.price }
+                SORT.PRICE_HIGH_LOW -> list.sortedByDescending { it.price }
+            }
+            savedState.set(KEY_PRODUCT_LIST, sortedList)
         }
     }
 

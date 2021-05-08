@@ -15,7 +15,7 @@ class ProductMapper @Inject constructor(
 ) : IMapper<ProductDto, Product> {
     override fun map(input: ProductDto): Product =
         Product(
-            currency = input.currency ?: context.getString(R.string.currency_default),
+            currency = if (input.currency.isNullOrBlank())  context.getString(R.string.currency_euro) else input.currency,
             description = input.description ?: "",
             id = input.id ?: "",
             imageUrl = input.image ?: "",

@@ -6,4 +6,7 @@
     <dimen name="text_margin">16dp</dimen>
     <dimen name="dialog_margin">40dp</dimen>
     <dimen name="product_list_name_margin_start">40dp</dimen>
+    <dimen name="product_list_price_margin_top">4dp</dimen>
+    <dimen name="product_grid_name_margin_horizontal">16dp</dimen>
+    <dimen name="product_grid_name_margin_top">4dp</dimen>
 </resources>

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,14 +6,26 @@
     android:layout_height="match_parent"
     android:baselineAligned="false"
     android:divider="?android:attr/dividerHorizontal"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:showDividers="middle"
     tools:context=".ui.product.list.ProductListActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="@string/product_list_title"
+        app:titleTextAppearance="@style/AdiChallenge.Toolbar"
+        android:background="@color/background"
+        android:elevation="4dp"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/item_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="true"
         android:name="tech.medina.adichallenge.ProductListFragment"
         app:layoutManager="LinearLayoutManager"
         tools:listitem="@layout/item_list_content" />
