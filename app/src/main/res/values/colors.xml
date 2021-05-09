@@ -14,4 +14,6 @@
     <color name="background">@color/grey_light</color>
     <color name="text_main">@color/black</color>
     <color name="text_background">@color/white</color>
+    <color name="button_background">@color/black</color>
+    <color name="button_color">@color/white</color>
 </resources>

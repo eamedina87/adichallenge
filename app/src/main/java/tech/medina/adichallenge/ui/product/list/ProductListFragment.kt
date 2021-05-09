@@ -18,6 +18,8 @@ import tech.medina.adichallenge.ui.product.list.adapter.ProductGridAdapter
 import tech.medina.adichallenge.ui.product.list.adapter.ProductListAdapter
 import tech.medina.adichallenge.domain.models.GALLERY
 import tech.medina.adichallenge.domain.models.SORT
+import tech.medina.adichallenge.ui.utils.MarginItemDecoration
+import tech.medina.adichallenge.ui.utils.visible
 
 class ProductListFragment : BaseFragment() {
 
@@ -53,22 +55,11 @@ class ProductListFragment : BaseFragment() {
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        //todo save search text
-    }
-
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-        //todo get search text
-    }
-
-
     private fun initObservers() {
         viewModel.products.observe(this, Observer {
             it?.let { products ->
                 if (products.isEmpty()) {
-                    onGetProductsEmpty()
+                    onGetProductsError(getString(R.string.product_list_message_empty))
                 } else {
                     productList = products
                     setupToolbar()
@@ -78,7 +69,7 @@ class ProductListFragment : BaseFragment() {
         })
         viewModel.loader.observe(this, Observer {
             it?.let { show ->
-                if (show) showLoader() else hideLoader()
+                showLoader(show)
             }
         })
         viewModel.error.observe(this, Observer {
@@ -88,31 +79,41 @@ class ProductListFragment : BaseFragment() {
         })
     }
 
-    private fun onGetProductsEmpty() {
-
-    }
-
     private fun onGetProductsError(error: Any?) {
-
+        binding.message?.root?.visible()
+        binding.message?.text?.text = error.toString()
+        binding.message?.button?.setOnClickListener(::onRetryButtonClick)
+        binding.itemList.visible(false)
     }
 
-    private fun showLoader() {
-
-    }
-
-    private fun hideLoader() {
-
+    private fun showLoader(show: Boolean) {
+        binding.progress?.visible(show)
     }
 
     //RECYCLERVIEW
 
     private fun setupRecyclerView() {
+        binding.message?.root?.visible(false)
+        binding.itemList.visible()
         binding.itemList.apply {
             setupRecyclerViewScrollEffect(this)
+            setupRecyclerViewItemDecorations(this)
             adapter = getRecyclerViewAdapter().apply {
                 submitList(productList)
             }
             layoutManager = getRecyclerViewLayoutManager()
+        }
+    }
+
+    private fun setupRecyclerViewItemDecorations(recyclerView: RecyclerView) {
+        if (gallery == GALLERY.GRID) {
+            recyclerView.addItemDecoration(
+                MarginItemDecoration(
+                    marginBottom = requireContext().resources.getDimensionPixelSize(R.dimen.product_grid_item_margin_bottom),
+                    marginEnd = requireContext().resources.getDimensionPixelSize(R.dimen.product_grid_item_margin_end),
+                    columns = requireContext().resources.getInteger(R.integer.product_grid_columns),
+                    listSize = productList.size
+                ))
         }
     }
 
@@ -156,6 +157,12 @@ class ProductListFragment : BaseFragment() {
         }
     }
 
+    private fun onRetryButtonClick(view: View) {
+        binding.message?.root?.visible(false)
+        binding.itemList.visible(false)
+        viewModel.getAllProducts()
+    }
+
     private fun showProductsIn(newGallery: GALLERY): Boolean {
         if (gallery != newGallery) {
             gallery = newGallery
@@ -166,8 +173,8 @@ class ProductListFragment : BaseFragment() {
 
     private fun sortProductsBy(newSort: SORT): Boolean {
         if (sort != newSort) {
-            viewModel.sortProductsBy(newSort)
             sort = newSort
+            viewModel.sortProductsBy(newSort)
         }
         return true
     }

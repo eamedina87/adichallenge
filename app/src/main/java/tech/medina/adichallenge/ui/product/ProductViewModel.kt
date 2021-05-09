@@ -38,7 +38,7 @@ class ProductViewModel @Inject constructor(
         getAllProducts()
     }
 
-    private fun getAllProducts() {
+    fun getAllProducts() {
         viewModelScope.launch {
             savedState.set(KEY_PRODUCT_LOADER, true)
             val result = withContext(dispatcher) {

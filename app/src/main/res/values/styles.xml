@@ -12,11 +12,13 @@
     </style>
 
     <style name="AdiChallenge.Text" parent="AdiChallenge">
-        <item name="android:background">@color/text_background</item>
+        <item name="fontFamily">sans-serif-medium</item>
     </style>
 
     <style name="AdiChallenge.Text.Product" parent="AdiChallenge.Text"/>
-    <style name="AdiChallenge.Text.Product.List" parent="AdiChallenge.Text.Product"/>
+    <style name="AdiChallenge.Text.Product.List" parent="AdiChallenge.Text.Product">
+        <item name="android:background">@color/text_background</item>
+    </style>
 
     <style name="AdiChallenge.Text.Product.List.Name" parent="AdiChallenge.Text.Product.List">
         <item name="fontFamily">sans-serif-black</item>
@@ -26,8 +28,16 @@
         <item name="android:paddingStart">8dp</item>
         <item name="android:paddingEnd">8dp</item>
     </style>
+
     <style name="AdiChallenge.Text.Product.List.Price" parent="AdiChallenge.Text.Product.List.Name">
         <item name="fontFamily">sans-serif-condensed</item>
+    </style>
+
+    <style name="AdiChallenge.Button" parent="AdiChallenge">
+        <item name="fontFamily">sans-serif-condensed</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:background">@color/button_background</item>
+        <item name="android:textColor">@color/button_color</item>
     </style>
 
 </resources>

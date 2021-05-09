@@ -20,14 +20,34 @@
         android:elevation="4dp"
         />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/item_list"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:clipToPadding="true"
-        android:name="tech.medina.adichallenge.ProductListFragment"
-        app:layoutManager="LinearLayoutManager"
-        tools:listitem="@layout/item_list_content" />
+        android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/item_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="true"
+            android:name="tech.medina.adichallenge.ProductListFragment"
+            app:layoutManager="LinearLayoutManager"
+            tools:listitem="@layout/item_list_content" />
+
+        <include layout="@layout/layout_error_empty"
+            android:id="@+id/message"
+            android:visibility="gone"
+            />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/button_background"
+            />
+
+    </FrameLayout>
 
 </LinearLayout>

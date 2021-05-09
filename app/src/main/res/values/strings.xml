@@ -13,8 +13,12 @@
     <string name="list_menu_gallery_list">List</string>
     <string name="list_menu_gallery_grid">Grid</string>
 
+    <string name="button_retry">Retry</string>
+
     <string name="product_list_title">Productos</string>
+    <string name="product_list_button">Ver Detalle</string>
     <string name="product_price">%s%s</string>
     <string name="currency_euro">&#8364;</string>
+    <string name="product_list_message_empty">No products were found.</string>
 
 </resources>
