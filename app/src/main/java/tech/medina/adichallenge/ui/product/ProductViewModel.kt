@@ -13,6 +13,8 @@ import tech.medina.adichallenge.domain.usecase.IGetAllProductsUseCase
 import tech.medina.adichallenge.domain.usecase.IGetProductByIdUseCase
 import tech.medina.adichallenge.domain.models.SORT
 import javax.inject.Inject
+import javax.inject.Singleton
+
 
 @HiltViewModel
 class ProductViewModel @Inject constructor(
@@ -41,18 +43,11 @@ class ProductViewModel @Inject constructor(
     fun getAllProducts() {
         viewModelScope.launch {
             savedState.set(KEY_PRODUCT_LOADER, true)
-            val result = withContext(dispatcher) {
-                getAllProductsUseCase()
-            }
+            val result = withContext(dispatcher) { getAllProductsUseCase() }
+            savedState.set(KEY_PRODUCT_LOADER, false)
             when (result) {
-                is DataState.Success -> {
-                    savedState.set(KEY_PRODUCT_LOADER, false)
-                    savedState.set(KEY_PRODUCT_LIST, result.result)
-                }
-                is DataState.Error -> {
-                    savedState.set(KEY_PRODUCT_LOADER, false)
-                    savedState.set(KEY_PRODUCT_ERROR, result.error)
-                }
+                is DataState.Success -> savedState.set(KEY_PRODUCT_LIST, result.result)
+                is DataState.Error -> savedState.set(KEY_PRODUCT_ERROR, result.error)
                 is DataState.Loading -> savedState.set(KEY_PRODUCT_LOADER, true)
             }
 
@@ -61,11 +56,13 @@ class ProductViewModel @Inject constructor(
 
     fun getProductById(id: String) {
         viewModelScope.launch {
-            val result = withContext(dispatcher) {
-                getProductByIdUseCase(id)
-            }
-            if (result is DataState.Success) {
-                savedState.set(KEY_PRODUCT_DETAIL, result.result)
+            savedState.set(KEY_PRODUCT_LOADER, true)
+            val result = withContext(dispatcher) { getProductByIdUseCase(id) }
+            savedState.set(KEY_PRODUCT_LOADER, false)
+            when (result) {
+                is DataState.Success -> savedState.set(KEY_PRODUCT_DETAIL, result.result)
+                is DataState.Error -> savedState.set(KEY_PRODUCT_ERROR, result.error)
+                is DataState.Loading -> savedState.set(KEY_PRODUCT_LOADER, true)
             }
         }
     }
@@ -82,6 +79,10 @@ class ProductViewModel @Inject constructor(
             }
             savedState.set(KEY_PRODUCT_LIST, sortedList)
         }
+    }
+
+    fun getReviewsForProductWithId(id: String) {
+
     }
 
 }

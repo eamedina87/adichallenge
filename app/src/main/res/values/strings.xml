@@ -15,10 +15,14 @@
 
     <string name="button_retry">Retry</string>
 
-    <string name="product_list_title">Productos</string>
-    <string name="product_list_button">Ver Detalle</string>
+    <string name="product_list_title">Products</string>
+    <string name="product_list_button">See Details</string>
     <string name="product_price">%s%s</string>
     <string name="currency_euro">&#8364;</string>
     <string name="product_list_message_empty">No products were found.</string>
+
+    <string name="product_detail_descriptions_title">Description</string>
+    <string name="button_close">Close</string>
+    <string name="product_detail_message_error">An error occurred. Please try again later.</string>
 
 </resources>

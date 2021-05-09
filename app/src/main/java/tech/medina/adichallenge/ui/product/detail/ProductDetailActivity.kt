@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModel
+import tech.medina.adichallenge.R
 import tech.medina.adichallenge.databinding.ActivityItemListBinding
 import tech.medina.adichallenge.ui.common.BaseActivity
 import tech.medina.adichallenge.ui.product.list.ProductListActivity
+import tech.medina.adichallenge.ui.product.list.ProductListFragment
+import tech.medina.adichallenge.ui.utils.Constants
 
 /**
  * An activity representing a single Item detail screen. This
@@ -24,7 +27,10 @@ class ProductDetailActivity : BaseActivity() {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-        Log.d("erick", "initView")
+        if (savedInstanceState == null) {
+            val productId = intent?.extras?.getString(Constants.INTENT_EXTRA_PRODUCT_ID, "") ?: ""
+            addFragment(R.id.frameLayout, ProductDetailFragment.create(productId), "list")
+        }
     }
 
 
