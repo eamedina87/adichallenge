@@ -77,17 +77,17 @@ class ProductDetailFragment : BaseFragment() {
     }
 
     private fun onGetProductSuccess(data: Product) {
-        binding.layout.visible()
+        binding.layout.root.visible()
         binding.collapsingToolbar.visible()
         binding.message.root.visible(false)
-        imageLoader.loadWithUrl(data.imageUrl, binding.image)
-        binding.name.text = data.name
-        binding.price.text = data.getFormattedPrice(requireContext())
-        binding.description.text = data.description
+        imageLoader.loadWithUrl(data.imageUrl, binding.header.image)
+        binding.header.name.text = data.name
+        binding.header.price.text = data.getFormattedPrice(requireContext())
+        binding.layout.description.text = data.description
     }
 
     private fun onGetProductError(error: Any?, shouldClose: Boolean = false) {
-        binding.layout.visible(false)
+        binding.layout.root.visible(false)
         binding.collapsingToolbar.visible(false)
         binding.message.root.visible()
         binding.message.text.text = error.toString()

@@ -24,5 +24,8 @@
     <string name="product_detail_descriptions_title">Description</string>
     <string name="button_close">Close</string>
     <string name="product_detail_message_error">An error occurred. Please try again later.</string>
+    <string name="product_detail_reviews_title">Reviews</string>
+    <string name="product_detail_reviews_button_view">View All</string>
+    <string name="product_detail_reviews_button_add">Add Review</string>
 
 </resources>
