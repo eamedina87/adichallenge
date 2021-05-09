@@ -41,13 +41,15 @@ android {
             debuggable true //todo change
             signingConfig signingConfigs.adichallenge
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "API_BASE_URL", project.property('API_BASE_URL_PROD')
+            buildConfigField "String", "API_BASE_PRODUCT_URL", project.property('API_BASE_PRODUCT_URL_PROD')
+            buildConfigField "String", "API_BASE_REVIEW_URL", project.property('API_BASE_REVIEW_URL_PROD')
         }
 
         debug {
             applicationIdSuffix ".dev"
             debuggable true
-            buildConfigField "String", "API_BASE_URL", project.property('API_BASE_URL_DEBUG')
+            buildConfigField "String", "API_BASE_PRODUCT_URL", project.property('API_BASE_PRODUCT_URL_DEBUG')
+            buildConfigField "String", "API_BASE_REVIEW_URL", project.property('API_BASE_REVIEW_URL_DEBUG')
         }
     }
 

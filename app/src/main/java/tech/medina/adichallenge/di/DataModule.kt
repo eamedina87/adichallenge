@@ -10,7 +10,8 @@ import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import tech.medina.adichallenge.BuildConfig
-import tech.medina.adichallenge.data.api.AdiChallengeApi
+import tech.medina.adichallenge.data.api.ProductApi
+import tech.medina.adichallenge.data.api.ReviewApi
 import tech.medina.adichallenge.data.repository.IProductRepository
 import tech.medina.adichallenge.data.repository.ProductRepository
 import javax.inject.Singleton
@@ -43,14 +44,26 @@ class DataModuleProvides {
 
     @Singleton
     @Provides
-    fun providesApi(
+    fun providesProductApi(
         converter: Converter.Factory
-    ): AdiChallengeApi {
+    ): ProductApi {
         return Retrofit.Builder()
-            .baseUrl(BuildConfig.API_BASE_URL)
+            .baseUrl(BuildConfig.API_BASE_PRODUCT_URL)
             .addConverterFactory(converter)
             .build()
-            .create(AdiChallengeApi::class.java)
+            .create(ProductApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun providesReviewApi(
+        converter: Converter.Factory
+    ): ReviewApi {
+        return Retrofit.Builder()
+            .baseUrl(BuildConfig.API_BASE_REVIEW_URL)
+            .addConverterFactory(converter)
+            .build()
+            .create(ReviewApi::class.java)
     }
 
 }

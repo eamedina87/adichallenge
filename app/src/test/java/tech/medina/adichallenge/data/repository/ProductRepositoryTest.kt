@@ -8,14 +8,14 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Test
 import tech.medina.adichallenge.base.BaseTest
-import tech.medina.adichallenge.data.api.AdiChallengeApi
+import tech.medina.adichallenge.data.api.ProductApi
 import tech.medina.adichallenge.utils.FakeApi
 
 @ExperimentalCoroutinesApi
 class ProductRepositoryTest : BaseTest() {
 
 
-    private val api = mockk<AdiChallengeApi>() {
+    private val api = mockk<ProductApi>() {
         coEvery { getAllProducts() } returns FakeApi.productList
         coEvery { getProductById(any())} returns FakeApi.product
     }

@@ -6,7 +6,7 @@ import retrofit2.http.PUT
 import retrofit2.http.Path
 import tech.medina.adichallenge.data.api.dto.ProductDto
 
-interface AdiChallengeApi {
+interface ProductApi {
 
     @GET("product")
     suspend fun getAllProducts(): List<ProductDto>
