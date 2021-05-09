@@ -18,16 +18,16 @@ import tech.medina.adichallenge.domain.models.DataState
 import tech.medina.adichallenge.domain.models.Product
 import tech.medina.adichallenge.domain.models.Review
 import tech.medina.adichallenge.utils.FakeApi
+import tech.medina.adichallenge.utils.FakeModels
 
 @ExperimentalCoroutinesApi
 class GetProductByIdUseCaseTest : BaseTest() {
 
     private val repository = mockk<IProductRepository>() {
-        coEvery { getAllProducts() } returns FakeApi.productList
         coEvery { getProductById(any()) } returns FakeApi.product
     }
     private val productMapper = mockk<IMapper<ProductDto, Product>>() {
-        every { map(any()) } returns Product("", listOf(Review("")))
+        every { map(any()) } returns FakeModels.product
     }
 
     @Test

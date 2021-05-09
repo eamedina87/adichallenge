@@ -12,7 +12,7 @@ interface IReviewRepository {
 class ReviewRepository @Inject constructor(private val api: ReviewApi): IReviewRepository {
 
     override suspend fun getReviewsForProductWithId(productId: String): List<ReviewDto> =
-        api.getAllReviewsForProductWithId()
+        api.getAllReviewsForProductWithId(productId)
 
     override suspend fun addReviewForProductWithId(productId: String, review: ReviewDto): ReviewDto =
         api.postReviewForProductWithId(productId, review)

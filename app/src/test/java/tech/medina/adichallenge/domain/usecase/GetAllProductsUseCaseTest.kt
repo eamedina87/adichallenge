@@ -15,8 +15,8 @@ import tech.medina.adichallenge.domain.models.DataState
 import tech.medina.adichallenge.domain.models.Product
 import tech.medina.adichallenge.domain.models.Review
 import tech.medina.adichallenge.utils.FakeApi
+import tech.medina.adichallenge.utils.FakeModels
 import tech.medina.adichallenge.utils.FakeRepo
-
 
 @ExperimentalCoroutinesApi
 class GetAllProductsUseCaseTest : BaseTest() {
@@ -25,8 +25,8 @@ class GetAllProductsUseCaseTest : BaseTest() {
         coEvery { getAllProducts() } returns FakeApi.productList
         coEvery { getProductById(any()) } returns FakeApi.product
     }
-    private val productMapper = mockk<IMapper<ProductDto, Product>>() {
-        every { map(any()) } returns Product("", listOf(Review("")))
+    private val productMapper = mockk<IMapper<ProductDto, Product>> {
+        every { map(any()) } returns FakeModels.product
     }
 
     @Test
@@ -35,7 +35,7 @@ class GetAllProductsUseCaseTest : BaseTest() {
         val result = useCase()
         coVerify {
             repository.getAllProducts()
-            productMapper.map(any())
+            //productMapper.map(any())
         }
         with (result) {
             Truth.assertThat(this).isNotNull()

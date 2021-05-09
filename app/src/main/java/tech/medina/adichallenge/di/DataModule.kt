@@ -13,7 +13,9 @@ import tech.medina.adichallenge.BuildConfig
 import tech.medina.adichallenge.data.api.ProductApi
 import tech.medina.adichallenge.data.api.ReviewApi
 import tech.medina.adichallenge.data.repository.IProductRepository
+import tech.medina.adichallenge.data.repository.IReviewRepository
 import tech.medina.adichallenge.data.repository.ProductRepository
+import tech.medina.adichallenge.data.repository.ReviewRepository
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
@@ -25,6 +27,10 @@ abstract class DataModuleBinds {
         repository: ProductRepository
     ): IProductRepository
 
+    @Binds
+    abstract fun bindReviewRepository(
+        repository: ReviewRepository
+    ): IReviewRepository
 
 }
 

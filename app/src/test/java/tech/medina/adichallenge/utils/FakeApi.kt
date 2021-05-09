@@ -2,12 +2,15 @@ package tech.medina.adichallenge.utils
 
 import com.google.gson.Gson
 import tech.medina.adichallenge.data.api.dto.ProductDto
+import tech.medina.adichallenge.data.api.dto.ReviewDto
 import java.io.File
 
 object FakeApi {
 
     val productList: List<ProductDto> = getEntityListFromJson("products.json")
     val product: ProductDto = getEntityFromJson("product_by_id.json")
+    val reviewList: List<ReviewDto> = getEntityListFromJson("review_list.json")
+    val review: ReviewDto = getEntityFromJson("review.json")
 
     private inline fun <reified T> getEntityFromJson(json: String): T =
         Gson().fromJson(getResource(json).readText(), T::class.java)
