@@ -106,7 +106,7 @@ class ProductListFragment : BaseFragment() {
     }
 
     private fun setupRecyclerViewItemDecorations(recyclerView: RecyclerView) {
-        if (gallery == GALLERY.GRID) {
+        if (gallery == GALLERY.GRID && recyclerView.itemDecorationCount == 0) {
             recyclerView.addItemDecoration(
                 MarginItemDecoration(
                     marginBottom = requireContext().resources.getDimensionPixelSize(R.dimen.product_grid_item_margin_bottom),

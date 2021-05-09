@@ -9,9 +9,12 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import tech.medina.adichallenge.domain.models.DataState
 import tech.medina.adichallenge.domain.models.Product
+import tech.medina.adichallenge.domain.models.Review
 import tech.medina.adichallenge.domain.usecase.IGetAllProductsUseCase
 import tech.medina.adichallenge.domain.usecase.IGetProductByIdUseCase
 import tech.medina.adichallenge.domain.models.SORT
+import tech.medina.adichallenge.domain.usecase.GetProductReviewsUseCase
+import tech.medina.adichallenge.domain.usecase.IGetProductReviewsUseCase
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -22,11 +25,15 @@ class ProductViewModel @Inject constructor(
     private val dispatcher: CoroutineDispatcher,
     private val getAllProductsUseCase: IGetAllProductsUseCase,
     private val getProductByIdUseCase: IGetProductByIdUseCase,
+    private val getProductReviewsUseCase: IGetProductReviewsUseCase
 ): ViewModel() {
 
     companion object {
         const val KEY_PRODUCT_LIST = "product.list"
         const val KEY_PRODUCT_DETAIL = "product.detail"
+        const val KEY_PRODUCT_REVIEWS_LIST = "product.reviews.list"
+        const val KEY_PRODUCT_REVIEWS_LOADER = "product.reviews.loader"
+        const val KEY_PRODUCT_REVIEWS_ERROR = "product.reviews.error"
         const val KEY_PRODUCT_ERROR = "product.error"
         const val KEY_PRODUCT_LOADER = "product.loading"
     }
@@ -35,6 +42,9 @@ class ProductViewModel @Inject constructor(
     val loader = savedState.getLiveData<Boolean>(KEY_PRODUCT_LOADER)
     val products = savedState.getLiveData<List<Product>>(KEY_PRODUCT_LIST)
     val productDetail = savedState.getLiveData<Product>(KEY_PRODUCT_DETAIL)
+    val productReviews = savedState.getLiveData<List<Review>>(KEY_PRODUCT_REVIEWS_LIST)
+    val reviewsLoader = savedState.getLiveData<Boolean>(KEY_PRODUCT_REVIEWS_LOADER)
+    val reviewsError = savedState.getLiveData<Any?>(KEY_PRODUCT_REVIEWS_ERROR)
 
     init {
         getAllProducts()
@@ -50,11 +60,11 @@ class ProductViewModel @Inject constructor(
                 is DataState.Error -> savedState.set(KEY_PRODUCT_ERROR, result.error)
                 is DataState.Loading -> savedState.set(KEY_PRODUCT_LOADER, true)
             }
-
         }
     }
 
     fun getProductById(id: String) {
+        getReviewsForProductWithId(id)
         viewModelScope.launch {
             savedState.set(KEY_PRODUCT_LOADER, true)
             val result = withContext(dispatcher) { getProductByIdUseCase(id) }
@@ -82,7 +92,16 @@ class ProductViewModel @Inject constructor(
     }
 
     fun getReviewsForProductWithId(id: String) {
-
+        viewModelScope.launch {
+            savedState.set(KEY_PRODUCT_REVIEWS_LOADER, true)
+            val result = withContext(dispatcher) { getProductReviewsUseCase(id) }
+            savedState.set(KEY_PRODUCT_REVIEWS_LOADER, false)
+            when (result) {
+                is DataState.Success -> savedState.set(KEY_PRODUCT_REVIEWS_LIST, result.result)
+                is DataState.Error -> savedState.set(KEY_PRODUCT_REVIEWS_ERROR, result.error)
+                is DataState.Loading -> savedState.set(KEY_PRODUCT_REVIEWS_LOADER, true)
+            }
+        }
     }
 
 }

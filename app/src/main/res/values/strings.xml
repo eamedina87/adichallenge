@@ -25,6 +25,8 @@
     <string name="button_close">Close</string>
     <string name="product_detail_message_error">An error occurred. Please try again later.</string>
     <string name="product_detail_reviews_title">Reviews</string>
+    <string name="product_detail_reviews_total">%d reviews</string>
+    <string name="product_detail_reviews_message_empty">No reviews found for this product.</string>
     <string name="product_detail_reviews_button_view">View All</string>
     <string name="product_detail_reviews_button_add">Add Review</string>
 

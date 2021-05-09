@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModel
 import tech.medina.adichallenge.R
 import tech.medina.adichallenge.databinding.FragmentItemDetailBinding
 import tech.medina.adichallenge.domain.models.Product
+import tech.medina.adichallenge.domain.models.Review
 import tech.medina.adichallenge.ui.common.BaseFragment
 import tech.medina.adichallenge.ui.product.ProductViewModel
 import tech.medina.adichallenge.ui.utils.visible
@@ -66,6 +67,25 @@ class ProductDetailFragment : BaseFragment() {
                 onGetProductError(error)
             }
         })
+        viewModel.productReviews.observe(this, Observer {
+            it?.let { reviews ->
+                if (reviews.isEmpty()) {
+                    onGetReviewsError(requireContext().getString(R.string.product_detail_reviews_message_empty), isEmpty = true)
+                } else {
+                    onGetReviewsSuccess(reviews)
+                }
+            }
+        })
+        viewModel.reviewsError.observe(this, Observer {
+            it?.let { error ->
+                onGetReviewsError(error)
+            }
+        })
+        viewModel.reviewsLoader.observe(this, Observer {
+            it?.let { show ->
+                showReviewsLoader(show)
+            }
+        })
     }
 
     private fun setupToolbar(data: Product) {
@@ -76,18 +96,20 @@ class ProductDetailFragment : BaseFragment() {
         }
     }
 
+    //PRODUCT METHODS
+
     private fun onGetProductSuccess(data: Product) {
-        binding.layout.root.visible()
+        binding.content.root.visible()
         binding.collapsingToolbar.visible()
         binding.message.root.visible(false)
         imageLoader.loadWithUrl(data.imageUrl, binding.header.image)
         binding.header.name.text = data.name
         binding.header.price.text = data.getFormattedPrice(requireContext())
-        binding.layout.description.text = data.description
+        binding.content.description.text = data.description
     }
 
     private fun onGetProductError(error: Any?, shouldClose: Boolean = false) {
-        binding.layout.root.visible(false)
+        binding.content.root.visible(false)
         binding.collapsingToolbar.visible(false)
         binding.message.root.visible()
         binding.message.text.text = error.toString()
@@ -103,12 +125,60 @@ class ProductDetailFragment : BaseFragment() {
         binding.progress.visible(show)
     }
 
+    //REVIEW METHODS
+
+    private fun onGetReviewsSuccess(list: List<Review>) {
+        val ratingAverage = list.map { it.rating }.average()
+        binding.content.reviews.apply {
+            message.root.visible(false)
+            container.visible(true)
+            average.text = "$ratingAverage"
+            stars.progress = ratingAverage.toInt()
+            totalReviews.text = getString(R.string.product_detail_reviews_total, list.size)
+            buttonViewAll.setOnClickListener(::onViewAllReviewsButtonClick)
+            buttonAddReview.setOnClickListener(::onAddReviewButtonClick)
+        }
+
+    }
+
+    private fun onGetReviewsError(error: Any?, isEmpty: Boolean = false) {
+        binding.content.reviews.apply {
+            container.visible(false)
+            message.root.visible()
+            message.text.text = error.toString()
+            if (isEmpty) {
+                message.button.text = getString(R.string.product_detail_reviews_button_add)
+                message.button.setOnClickListener(::onAddReviewButtonClick)
+            } else {
+                message.button.setOnClickListener(::onRetryReviewsButtonClick)
+            }
+        }
+    }
+
+    private fun showReviewsLoader(show: Boolean) {
+        binding.content.reviews.progress.visible(show)
+    }
+
+    //CLICK METHODS
+
     private fun onRetryButtonClick(view: View) {
         viewModel.getProductById(productId!!)
     }
 
+    private fun onRetryReviewsButtonClick(view: View) {
+        viewModel.getReviewsForProductWithId(productId!!)
+    }
+
     private fun onCloseButtonClick(view: View) {
         baseActivity.finish()
+    }
+
+    private fun onAddReviewButtonClick(view: View) {
+        //todo go to add review
+    }
+
+    private fun onViewAllReviewsButtonClick(view: View) {
+        //todo view All reviews
     }
 
 }

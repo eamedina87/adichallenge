@@ -20,7 +20,7 @@ class GetProductReviewsUseCase @Inject constructor(
         try {
             DataState.Success(repository.getReviewsForProductWithId(productId).map {
                 mapper.map(it)
-            })
+            }.filter { it.rating != -1 && it.text.isNotBlank() })
         } catch (e: Exception) {
             DataState.Error(e)
         }

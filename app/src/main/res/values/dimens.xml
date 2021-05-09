@@ -10,8 +10,8 @@
     <dimen name="product_list_button_height">28dp</dimen>
     <dimen name="product_grid_name_margin_horizontal">16dp</dimen>
     <dimen name="product_grid_name_margin_top">4dp</dimen>
-    <dimen name="product_grid_item_margin_bottom">4dp</dimen>
-    <dimen name="product_grid_item_margin_end">4dp</dimen>
+    <dimen name="product_grid_item_margin_bottom">2dp</dimen>
+    <dimen name="product_grid_item_margin_end">2dp</dimen>
 
     <dimen name="error_button_margin_top">24dp</dimen>
 </resources>

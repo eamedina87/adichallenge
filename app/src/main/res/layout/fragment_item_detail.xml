@@ -45,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <include android:id="@id/layout" layout="@layout/layout_detail_content" />
+            <include android:id="@id/content" layout="@layout/layout_detail_content" />
 
             <include layout="@layout/layout_error_empty"
                 android:layout_width="match_parent"

@@ -8,6 +8,7 @@
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="vertical"
     android:showDividers="middle"
+    android:background="@color/background"
     tools:context=".ui.product.list.ProductListActivity">
 
     <androidx.appcompat.widget.Toolbar
