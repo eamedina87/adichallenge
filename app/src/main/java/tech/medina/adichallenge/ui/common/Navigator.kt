@@ -51,21 +51,17 @@ class Navigator @Inject constructor() {
             putString(Constants.INTENT_EXTRA_PRODUCT_ID, id)
         }
         goToActivity(source = source, destination = ProductDetailActivity::class.java, extras = extras)
-        if (Utils.isTablet(source)) {
+       // if (Utils.isTablet(source)) {
             /*source.replaceFragment(
                 containerViewId = containerId,
                 fragment = DeliveryDetailFragment.createWithExtras(extras),
                 tag = "delivery.detail") */
-        } else {
+        //} else {
             /*goToActivity(
                 source = source,
                 destination = Activity.DeliveryDetail,
                 extras = extras)*/
-        }
-    }
-
-    sealed class Activity(val className: Class<*>) {
-        object NoActivity: Activity(Any::class.java)
+        //}
     }
 
 }

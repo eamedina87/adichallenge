@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import tech.medina.adichallenge.R
 import tech.medina.adichallenge.databinding.ItemProductListBinding
 import tech.medina.adichallenge.domain.models.Product
 import tech.medina.adichallenge.ui.common.ImageLoader
@@ -32,14 +31,11 @@ class ProductListAdapter(
         private val context = binding.root.context
 
         fun bind(data: Product) = with(binding) {
+            button.setOnClickListener { clickFunction.invoke(data) }
+            container.setOnClickListener{ clickFunction.invoke(data) }
             imageLoader.loadWithUrl(data.imageUrl, image)
             name.text = data.name
-            //If we have Euro as currency we add first the price, then the symbol. Else symbol, then price
-            price.text = if (data.currency == context.getString(R.string.currency_euro)) {
-                context.getString(R.string.product_price, data.price, data.currency)
-            } else {
-                context.getString(R.string.product_price, data.currency, data.price)
-            }
+            price.text = data.getFormattedPrice(context)
         }
 
         companion object {

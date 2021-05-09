@@ -1,6 +1,7 @@
 package tech.medina.adichallenge.ui.product.detail
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModel
 import tech.medina.adichallenge.databinding.ActivityItemListBinding
@@ -23,7 +24,7 @@ class ProductDetailActivity : BaseActivity() {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-
+        Log.d("erick", "initView")
     }
 
 

@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import tech.medina.adichallenge.R
 import tech.medina.adichallenge.databinding.ItemProductGridBinding
 import tech.medina.adichallenge.domain.models.Product
 import tech.medina.adichallenge.ui.common.ImageLoader
@@ -32,9 +31,10 @@ class ProductGridAdapter(
         private val context = binding.root.context
 
         fun bind(data: Product) = with(binding) {
+            container.setOnClickListener{ clickFunction.invoke(data) }
             imageLoader.loadWithUrl(data.imageUrl, image)
             name.text = data.name
-            price.text = context.getString(R.string.product_price, data.currency, data.price)
+            price.text = data.getFormattedPrice(context)
         }
 
         companion object {
