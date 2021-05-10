@@ -1,0 +1,116 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/AdiChallenge.Text.Product.Detail.Section.Title"
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/product_review_title"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/AdiChallenge.Text.Product.Detail.Review.Number"
+        android:id="@+id/rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/stars"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:text="@string/product_review_rating_default"
+        />
+
+    <androidx.appcompat.widget.AppCompatRatingBar
+        android:id="@+id/stars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:stepSize="1"
+        android:progressTint="@color/button_background"
+        android:secondaryProgressTint="@color/background"
+        app:layout_constraintTop_toTopOf="@id/rating"
+        app:layout_constraintBottom_toBottomOf="@id/rating"
+        app:layout_constraintStart_toEndOf="@id/rating"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="36dp"
+        android:inputType="textMultiLine"
+        android:hint="@string/product_review_hint"
+        android:maxLength="@integer/review_message_max_character"
+        app:layout_constraintTop_toBottomOf="@id/rating"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/message"
+        app:layout_constraintEnd_toEndOf="@id/message"
+        tools:text="250 characters remaining"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/error"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/indicator"
+        app:layout_constraintStart_toStartOf="@id/message"
+        app:layout_constraintEnd_toEndOf="@id/message"
+        tools:text="Ocurrio un error"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        style="@style/AdiChallenge.Button"
+        android:id="@+id/button_add_review"
+        android:layout_width="150dp"
+        android:layout_height="@dimen/product_list_button_height"
+        android:layout_marginTop="24dp"
+        android:text="@string/product_review_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/error"
+        />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/button_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:visibility="visible"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -32,4 +32,14 @@
     <string name="product_detail_reviews_button_view">View All</string>
     <string name="product_detail_reviews_button_add">Add Review</string>
 
+    <string name="product_review_title">Add Review</string>
+    <string name="product_review_rating_text">%.1f</string>
+    <string name="product_review_rating_default">0</string>
+    <string name="product_review_hint">Write your opinion, so you help other users decide</string>
+    <string name="product_review_button">Send</string>
+    <string name="product_review_message_rating">Please select a rating</string>
+    <string name="product_review_message_text">Please write a message</string>
+    <string name="product_review_message_error">An error occurred sending the review. Please retry.</string>
+    <string name="product_review_message_success">Review added successfully</string>
+
 </resources>

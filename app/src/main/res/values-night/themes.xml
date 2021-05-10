@@ -12,6 +12,13 @@
         <item name="windowNoTitle">true</item>
     </style>-->
 
+    <style name="AdiChallenge.Button" parent="AdiChallenge">
+        <item name="fontFamily">sans-serif-condensed</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <color name="background">@color/black_light</color>
     <color name="text_main">@color/white</color>
     <color name="text_background">@color/black</color>

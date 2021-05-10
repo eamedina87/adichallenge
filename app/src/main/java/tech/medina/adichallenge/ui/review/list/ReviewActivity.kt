@@ -2,9 +2,7 @@ package tech.medina.adichallenge.ui.review.list
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.ViewModel
-import tech.medina.adichallenge.ui.product.detail.ProductDetailActivity
-import tech.medina.adichallenge.databinding.ActivityItemListBinding
+import tech.medina.adichallenge.databinding.ActivityDefaultBinding
 import tech.medina.adichallenge.ui.common.BaseActivity
 import tech.medina.adichallenge.ui.product.list.ProductListActivity
 
@@ -16,10 +14,10 @@ import tech.medina.adichallenge.ui.product.list.ProductListActivity
  */
 class ReviewActivity : BaseActivity() {
 
-    private lateinit var binding: ActivityItemListBinding
+    private lateinit var binding: ActivityDefaultBinding
 
     override fun getBindingRoot(): View {
-        binding = ActivityItemListBinding.inflate(layoutInflater)
+        binding = ActivityDefaultBinding.inflate(layoutInflater)
         return binding.root
     }
 

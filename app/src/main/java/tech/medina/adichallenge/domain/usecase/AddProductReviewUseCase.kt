@@ -5,10 +5,15 @@ import tech.medina.adichallenge.data.mapper.IMapper
 import tech.medina.adichallenge.data.repository.IReviewRepository
 import tech.medina.adichallenge.domain.models.DataState
 import tech.medina.adichallenge.domain.models.Review
+import java.util.*
 import javax.inject.Inject
 
 interface IAddProductReviewUseCase {
-    suspend operator fun invoke(productId: String, review: Review): DataState<Boolean>
+    suspend operator fun invoke(
+        productId: String,
+        rating: Int,
+        message: String
+    ): DataState<Boolean>
 }
 
 class AddProductReviewUseCase @Inject constructor(
@@ -16,8 +21,9 @@ class AddProductReviewUseCase @Inject constructor(
     private val mapper: IMapper<Review, ReviewDto>
 ): IAddProductReviewUseCase {
 
-    override suspend operator fun invoke(productId: String, review: Review): DataState<Boolean> =
+    override suspend operator fun invoke(productId: String, rating: Int, message: String): DataState<Boolean> =
         try {
+            val review = Review(productId, Locale.getDefault().toLanguageTag(), rating, message)
             val reviewDto = mapper.map(review)
             val result = repository.addReviewForProductWithId(productId, reviewDto)
             DataState.Success(result == reviewDto)

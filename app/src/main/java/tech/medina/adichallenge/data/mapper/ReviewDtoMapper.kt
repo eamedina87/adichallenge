@@ -7,9 +7,9 @@ import javax.inject.Inject
 class ReviewDtoMapper @Inject constructor() : IMapper<Review, ReviewDto> {
     override fun map(input: Review): ReviewDto =
         ReviewDto(
-            id = input.id,
-            locale = "",
-            rating = -1,
-            text = ""
+            productId = input.id,
+            locale = input.locale,
+            rating = input.rating,
+            text = input.text
         )
 }

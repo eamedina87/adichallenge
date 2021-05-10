@@ -64,7 +64,6 @@ class ProductViewModel @Inject constructor(
     }
 
     fun getProductById(id: String) {
-        getReviewsForProductWithId(id)
         viewModelScope.launch {
             savedState.set(KEY_PRODUCT_LOADER, true)
             val result = withContext(dispatcher) { getProductByIdUseCase(id) }

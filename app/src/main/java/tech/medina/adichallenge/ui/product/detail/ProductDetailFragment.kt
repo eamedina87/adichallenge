@@ -28,6 +28,8 @@ import tech.medina.adichallenge.ui.utils.visible
 class ProductDetailFragment : BaseFragment() {
 
     companion object {
+        const val KEY_PRODUCT_ID = "product.id"
+
         fun create(productId: String): ProductDetailFragment = ProductDetailFragment().apply {
             this.productId = productId
         }
@@ -49,6 +51,27 @@ class ProductDetailFragment : BaseFragment() {
             viewModel.getProductById(productId!!)
         }
         initObservers()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        productId?.let {
+            viewModel.getReviewsForProductWithId(it)
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        productId?.let {
+            outState.putString(KEY_PRODUCT_ID, it)
+        }
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        savedInstanceState?.getString(KEY_PRODUCT_ID)?.let {
+            productId = it
+        }
     }
 
     private fun initObservers() {
@@ -133,7 +156,7 @@ class ProductDetailFragment : BaseFragment() {
         binding.content.reviews.apply {
             reviewMessage.root.visible(false)
             texts.visible()
-            average.text = "$ratingAverage"
+            average.text = getString(R.string.product_review_rating_text, ratingAverage)
             stars.progress = ratingAverage.toInt()
             totalReviews.text = getString(R.string.product_detail_reviews_total, list.size)
             buttonViewAll.setOnClickListener(::onViewAllReviewsButtonClick)
@@ -175,7 +198,9 @@ class ProductDetailFragment : BaseFragment() {
     }
 
     private fun onAddReviewButtonClick(view: View) {
-        //todo go to add review
+        productId?.let {
+            navigator.goToAddReview(baseActivity, it)
+        }
     }
 
     private fun onViewAllReviewsButtonClick(view: View) {

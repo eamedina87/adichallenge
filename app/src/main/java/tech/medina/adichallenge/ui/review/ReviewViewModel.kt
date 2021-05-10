@@ -9,7 +9,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import tech.medina.adichallenge.domain.models.DataState
 import tech.medina.adichallenge.domain.models.Product
-import tech.medina.adichallenge.domain.models.Review
 import tech.medina.adichallenge.domain.usecase.IAddProductReviewUseCase
 import javax.inject.Inject
 
@@ -22,16 +21,26 @@ class ReviewViewModel @Inject constructor(
 
     companion object {
         const val KEY_REVIEW_RESULT = "review.result"
+        const val KEY_REVIEW_LOADER = "review.loading"
+        const val KEY_REVIEW_ERROR = "review.error"
     }
 
-    val products = savedState.getLiveData<DataState<List<Product>>>(KEY_REVIEW_RESULT, DataState.Loading)
+    val addReviewResult = savedState.getLiveData<Boolean>(KEY_REVIEW_RESULT)
+    val loader = savedState.getLiveData<Boolean>(KEY_REVIEW_LOADER)
+    val error = savedState.getLiveData<String>(KEY_REVIEW_ERROR)
 
-    fun addProductReview(productId: String, review: Review) {
+    fun addProductReview(productId: String, rating: Int, message: String) {
+        savedState.set(KEY_REVIEW_LOADER, true)
         viewModelScope.launch {
             val result = withContext(dispatcher) {
-                addProductReviewUseCase(productId, review)
+                addProductReviewUseCase.invoke(productId, rating, message)
             }
-            savedState.set(KEY_REVIEW_RESULT, result)
+            savedState.set(KEY_REVIEW_LOADER, false)
+            when (result) {
+                is DataState.Success -> savedState.set(KEY_REVIEW_RESULT, result.result)
+                is DataState.Error -> savedState.set(KEY_REVIEW_ERROR, result.error.toString())
+                is DataState.Loading -> savedState.set(KEY_REVIEW_LOADER, true)
+            }
         }
     }
 

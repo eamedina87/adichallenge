@@ -37,6 +37,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:isIndicator="true"
+        android:max="5"
+        android:stepSize="1"
         android:progressTint="@color/button_background"
         android:secondaryProgressTint="@color/background"
         app:layout_constraintTop_toTopOf="@id/average"
