@@ -27,6 +27,8 @@
     <string name="product_detail_reviews_title">Reviews</string>
     <string name="product_detail_reviews_total">%d reviews</string>
     <string name="product_detail_reviews_message_empty">No reviews found for this product.</string>
+    <string name="product_detail_reviews_total_default">No reviews</string>
+    <string name="product_detail_reviews_rating_default">-</string>
     <string name="product_detail_reviews_button_view">View All</string>
     <string name="product_detail_reviews_button_add">Add Review</string>
 

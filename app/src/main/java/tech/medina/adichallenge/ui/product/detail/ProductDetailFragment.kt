@@ -131,10 +131,11 @@ class ProductDetailFragment : BaseFragment() {
         val ratingAverage = list.map { it.rating }.average()
         binding.content.reviews.apply {
             message.root.visible(false)
-            container.visible(true)
+            content.visible()
             average.text = "$ratingAverage"
             stars.progress = ratingAverage.toInt()
             totalReviews.text = getString(R.string.product_detail_reviews_total, list.size)
+            buttonViewAll.visible()
             buttonViewAll.setOnClickListener(::onViewAllReviewsButtonClick)
             buttonAddReview.setOnClickListener(::onAddReviewButtonClick)
         }
@@ -143,7 +144,6 @@ class ProductDetailFragment : BaseFragment() {
 
     private fun onGetReviewsError(error: Any?, isEmpty: Boolean = false) {
         binding.content.reviews.apply {
-            container.visible(false)
             message.root.visible()
             message.text.text = error.toString()
             if (isEmpty) {
