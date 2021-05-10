@@ -11,12 +11,11 @@ class ProductDtoMapper @Inject constructor(
 ) : IMapper<Product, ProductDto> {
     override fun map(input: Product): ProductDto =
         ProductDto(
-            id = input.id,
-            reviews = input.reviews.map { reviewMapper.map(it) },
-            currency = input.currency,
-            description = input.description,
-            image = input.imageUrl,
-            name = input.name,
-            price = input.price
+                currency = input.currency,
+                description = input.description,
+                id = input.id,
+                image = input.imageUrl,
+                name = input.name,
+                price = input.price
         )
 }

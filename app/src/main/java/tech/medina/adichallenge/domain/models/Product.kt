@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 import tech.medina.adichallenge.R
+import java.math.BigDecimal
 
 @Parcelize
 data class Product(
@@ -12,16 +13,17 @@ data class Product(
     val id: String,
     val imageUrl: String,
     val name: String,
-    val price: String, //since we are not making math operations in this app, we'll leave it as String
-    val reviews: List<Review>
+    val price: BigDecimal,
 ): Parcelable {
 
     //If we have Euro as currency we add first the price, then the symbol. Else symbol, then price
-    fun getFormattedPrice(context: Context): String =
-        if (currency == context.getString(R.string.currency_euro)) {
-            context.getString(R.string.product_price, price, currency)
+    fun getFormattedPrice(context: Context): String {
+        val euro = context.getString(R.string.currency_euro)
+        return if (currency.isBlank() || currency == euro) {
+            context.getString(R.string.product_price, price, euro)
         } else {
             context.getString(R.string.product_price, currency, price)
         }
+    }
 
 }

@@ -8,6 +8,6 @@ class ProductDiffCallback: DiffUtil.ItemCallback<Product>() {
         oldItem.id == newItem.id
 
     override fun areContentsTheSame(oldItem: Product, newItem: Product): Boolean =
-        oldItem.reviews == newItem.reviews
+        oldItem.name == newItem.name && oldItem.description == newItem.description
 
 }
