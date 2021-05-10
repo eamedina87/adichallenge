@@ -14,6 +14,7 @@ import tech.medina.adichallenge.domain.models.Product
 import tech.medina.adichallenge.domain.models.Review
 import tech.medina.adichallenge.ui.common.BaseFragment
 import tech.medina.adichallenge.ui.product.ProductViewModel
+import tech.medina.adichallenge.ui.utils.invisible
 import tech.medina.adichallenge.ui.utils.visible
 
 
@@ -130,12 +131,11 @@ class ProductDetailFragment : BaseFragment() {
     private fun onGetReviewsSuccess(list: List<Review>) {
         val ratingAverage = list.map { it.rating }.average()
         binding.content.reviews.apply {
-            message.root.visible(false)
-            content.visible()
+            reviewMessage.root.visible(false)
+            texts.visible()
             average.text = "$ratingAverage"
             stars.progress = ratingAverage.toInt()
             totalReviews.text = getString(R.string.product_detail_reviews_total, list.size)
-            buttonViewAll.visible()
             buttonViewAll.setOnClickListener(::onViewAllReviewsButtonClick)
             buttonAddReview.setOnClickListener(::onAddReviewButtonClick)
         }
@@ -144,13 +144,14 @@ class ProductDetailFragment : BaseFragment() {
 
     private fun onGetReviewsError(error: Any?, isEmpty: Boolean = false) {
         binding.content.reviews.apply {
-            message.root.visible()
-            message.text.text = error.toString()
+            texts.visible(false)
+            reviewMessage.root.visible()
+            reviewMessage.text.text = error.toString()
             if (isEmpty) {
-                message.button.text = getString(R.string.product_detail_reviews_button_add)
-                message.button.setOnClickListener(::onAddReviewButtonClick)
+                reviewMessage.button.text = getString(R.string.product_detail_reviews_button_add)
+                reviewMessage.button.setOnClickListener(::onAddReviewButtonClick)
             } else {
-                message.button.setOnClickListener(::onRetryReviewsButtonClick)
+                reviewMessage.button.setOnClickListener(::onRetryReviewsButtonClick)
             }
         }
     }
