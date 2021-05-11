@@ -16,9 +16,9 @@ interface ProductDao {
     fun getAll(): List<ProductEntity>
 
     @Query("""
-        SELECT * FROM product
-        JOIN product_fts ON product_fts.name = product.name
-        WHERE product_fts MATCH :query
+    SELECT product.* FROM product 
+    JOIN product_fts ON (product_fts.remoteId = product.remoteId) 
+    WHERE product_fts MATCH :query
     """)
     fun search(query: String): List<ProductEntity>
 

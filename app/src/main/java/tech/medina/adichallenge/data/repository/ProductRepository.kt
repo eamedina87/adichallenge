@@ -29,6 +29,6 @@ class ProductRepository @Inject constructor(
         api.getProductById(id)
 
     override suspend fun searchProducts(query: String): List<ProductEntity> =
-        database.productDao().getAll().filter { it.name.contains(query) || it.description.contains(query) }
+        database.productDao().search(query)
 
 }

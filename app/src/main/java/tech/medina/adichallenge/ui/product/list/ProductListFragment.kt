@@ -45,7 +45,7 @@ class ProductListFragment : BaseFragment() {
 
     override fun initView(savedInstanceState: Bundle?) {
         binding.button?.setOnClickListener {
-            viewModel.searchProducts(binding.search?.text.toString())
+            viewModel.searchProducts(binding.search?.text.toString().sanitize())
         }
         initObservers()
     }
