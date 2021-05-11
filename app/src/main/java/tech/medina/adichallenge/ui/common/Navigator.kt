@@ -5,6 +5,7 @@ import android.os.Bundle
 import tech.medina.adichallenge.ui.common.dialog.DialogWithTwoOptions
 import tech.medina.adichallenge.ui.product.detail.ProductDetailActivity
 import tech.medina.adichallenge.ui.review.detail.ReviewDetailActivity
+import tech.medina.adichallenge.ui.review.list.ReviewListActivity
 import tech.medina.adichallenge.ui.utils.Constants
 import tech.medina.adichallenge.ui.utils.Utils
 import javax.inject.Inject
@@ -47,6 +48,13 @@ class Navigator @Inject constructor() {
             putString(Constants.INTENT_EXTRA_PRODUCT_ID, id)
         }
         goToActivity(source = source, destination = ReviewDetailActivity::class.java, extras = extras)
+    }
+
+    fun goToViewReviews(source: BaseActivity, id: String) {
+        val extras = Bundle().apply {
+            putString(Constants.INTENT_EXTRA_PRODUCT_ID, id)
+        }
+        goToActivity(source = source, destination = ReviewListActivity::class.java, extras = extras)
     }
 
 }

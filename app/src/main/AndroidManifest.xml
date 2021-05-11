@@ -31,7 +31,7 @@
                 android:value="tech.medina.adichallenge.ui.product.list.ProductListActivity" />
         </activity>
         <activity
-            android:name=".ui.review.list.ReviewActivity"
+            android:name=".ui.review.list.ReviewListActivity"
             android:parentActivityName="tech.medina.adichallenge.ui.product.detail.ProductDetailActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

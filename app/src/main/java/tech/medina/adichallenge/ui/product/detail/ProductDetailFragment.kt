@@ -28,7 +28,7 @@ import tech.medina.adichallenge.ui.utils.visible
 class ProductDetailFragment : BaseFragment() {
 
     companion object {
-        const val KEY_PRODUCT_ID = "product.id"
+        private const val KEY_PRODUCT_ID = "product.id"
 
         fun create(productId: String): ProductDetailFragment = ProductDetailFragment().apply {
             this.productId = productId
@@ -186,11 +186,16 @@ class ProductDetailFragment : BaseFragment() {
     //CLICK METHODS
 
     private fun onRetryButtonClick(view: View) {
-        viewModel.getProductById(productId!!)
+        productId?.let {
+            viewModel.getProductById(it)
+        }
+
     }
 
     private fun onRetryReviewsButtonClick(view: View) {
-        viewModel.getReviewsForProductWithId(productId!!)
+        productId?.let {
+            viewModel.getReviewsForProductWithId(it)
+        }
     }
 
     private fun onCloseButtonClick(view: View) {
@@ -204,7 +209,9 @@ class ProductDetailFragment : BaseFragment() {
     }
 
     private fun onViewAllReviewsButtonClick(view: View) {
-        //todo view All reviews
+        productId?.let {
+            navigator.goToViewReviews(baseActivity, it)
+        }
     }
 
 }

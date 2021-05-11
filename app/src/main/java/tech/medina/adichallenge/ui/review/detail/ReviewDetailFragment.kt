@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import tech.medina.adichallenge.R
 import tech.medina.adichallenge.databinding.FragmentReviewDetailBinding
 import tech.medina.adichallenge.ui.common.BaseFragment
+import tech.medina.adichallenge.ui.product.detail.ProductDetailFragment
 import tech.medina.adichallenge.ui.review.ReviewViewModel
 import tech.medina.adichallenge.ui.utils.visible
 
@@ -17,6 +18,8 @@ class ReviewDetailFragment : BaseFragment() {
 
     companion object {
         private const val KEY_MESSAGE = "review.message"
+        private const val KEY_RATING = "review.rating"
+        private const val KEY_PRODUCT_ID = "product.id"
         fun create(productId: String): ReviewDetailFragment = ReviewDetailFragment().apply {
             this.productId = productId
         }
@@ -58,12 +61,22 @@ class ReviewDetailFragment : BaseFragment() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString(KEY_MESSAGE, binding.message.text.toString())
+        outState.putInt(KEY_RATING, binding.stars.progress)
+        productId?.let {
+            outState.putString(KEY_PRODUCT_ID, it)
+        }
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
         savedInstanceState?.getString(KEY_MESSAGE)?.let {
             binding.message.append(it)
+        }
+        savedInstanceState?.getString(KEY_PRODUCT_ID)?.let {
+            productId = it
+        }
+        savedInstanceState?.getInt(KEY_RATING)?.let {
+            binding.stars.progress = it
         }
     }
 

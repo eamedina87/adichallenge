@@ -29,13 +29,13 @@ class ProductViewModel @Inject constructor(
 ): ViewModel() {
 
     companion object {
-        const val KEY_PRODUCT_LIST = "product.list"
-        const val KEY_PRODUCT_DETAIL = "product.detail"
-        const val KEY_PRODUCT_REVIEWS_LIST = "product.reviews.list"
-        const val KEY_PRODUCT_REVIEWS_LOADER = "product.reviews.loader"
-        const val KEY_PRODUCT_REVIEWS_ERROR = "product.reviews.error"
-        const val KEY_PRODUCT_ERROR = "product.error"
-        const val KEY_PRODUCT_LOADER = "product.loading"
+        private const val KEY_PRODUCT_LIST = "product.list"
+        private const val KEY_PRODUCT_DETAIL = "product.detail"
+        private const val KEY_PRODUCT_REVIEWS_LIST = "product.reviews.list"
+        private const val KEY_PRODUCT_REVIEWS_LOADER = "product.reviews.loader"
+        private const val KEY_PRODUCT_REVIEWS_ERROR = "product.reviews.error"
+        private const val KEY_PRODUCT_ERROR = "product.error"
+        private const val KEY_PRODUCT_LOADER = "product.loading"
     }
 
     val error = savedState.getLiveData<Any?>(KEY_PRODUCT_ERROR)
