@@ -19,6 +19,7 @@ import tech.medina.adichallenge.ui.product.list.adapter.ProductListAdapter
 import tech.medina.adichallenge.domain.models.GALLERY
 import tech.medina.adichallenge.domain.models.SORT
 import tech.medina.adichallenge.ui.utils.MarginItemDecoration
+import tech.medina.adichallenge.ui.utils.sanitize
 import tech.medina.adichallenge.ui.utils.visible
 
 class ProductListFragment : BaseFragment() {
@@ -43,6 +44,9 @@ class ProductListFragment : BaseFragment() {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
+        binding.button?.setOnClickListener {
+            viewModel.searchProducts(binding.search?.text.toString())//.sanitize())
+        }
         initObservers()
     }
 

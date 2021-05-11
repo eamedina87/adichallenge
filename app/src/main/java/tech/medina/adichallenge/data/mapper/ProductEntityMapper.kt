@@ -6,14 +6,15 @@ import tech.medina.adichallenge.domain.models.Product
 import java.math.BigDecimal
 import javax.inject.Inject
 
-class ProductDtoMapper @Inject constructor() : IMapper<ProductDto, Product> {
-    override fun map(input: ProductDto): Product =
-        Product(
-            id = input.id ?: "",
+class ProductEntityMapper @Inject constructor() : IMapper<ProductDto, ProductEntity> {
+    override fun map(input: ProductDto): ProductEntity =
+        ProductEntity(
+            id = 0,
             currency = input.currency ?: "",
             description = input.description ?: "",
-            imageUrl = input.image ?: "",
+            image = input.image ?: "",
             name = input.name ?: "",
-            price = input.price ?: -1.0
+            price = input.price ?: -1.0,
+            remoteId = input.id ?: ""
         )
 }

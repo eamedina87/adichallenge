@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import tech.medina.adichallenge.data.api.dto.ProductDto
 import tech.medina.adichallenge.data.api.dto.ReviewDto
+import tech.medina.adichallenge.data.db.entity.ProductEntity
 import tech.medina.adichallenge.data.mapper.*
 import tech.medina.adichallenge.domain.models.Product
 import tech.medina.adichallenge.domain.models.Review
@@ -17,12 +18,17 @@ abstract class MapperModule {
     @Binds
     abstract fun bindProductDtoMapper(
         repository: ProductDtoMapper
-    ): IMapper<Product, ProductDto>
+    ): IMapper<ProductDto, Product>
+
+    @Binds
+    abstract fun bindProductEntityMapper(
+        repository: ProductEntityMapper
+    ): IMapper<ProductDto, ProductEntity>
 
     @Binds
     abstract fun bindProductMapper(
         repository: ProductMapper
-    ): IMapper<ProductDto, Product>
+    ): IMapper<ProductEntity, Product>
 
     @Binds
     abstract fun bindReviewDtoMapper(

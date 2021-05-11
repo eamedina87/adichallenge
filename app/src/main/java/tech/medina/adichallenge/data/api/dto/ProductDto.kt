@@ -15,5 +15,5 @@ data class ProductDto(
     @SerializedName("name")
     val name: String?,
     @SerializedName("price")
-    val price: BigDecimal?,
+    val price: Double?,
 )

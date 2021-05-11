@@ -13,16 +13,16 @@ data class Product(
     val id: String,
     val imageUrl: String,
     val name: String,
-    val price: BigDecimal,
+    val price: Double,
 ): Parcelable {
 
     //If we have Euro as currency we add first the price, then the symbol. Else symbol, then price
     fun getFormattedPrice(context: Context): String {
         val euro = context.getString(R.string.currency_euro)
         return if (currency.isBlank() || currency == euro) {
-            context.getString(R.string.product_price, price, euro)
+            context.getString(R.string.product_price, price.toString(), euro)
         } else {
-            context.getString(R.string.product_price, currency, price)
+            context.getString(R.string.product_price, currency, price.toString())
         }
     }
 

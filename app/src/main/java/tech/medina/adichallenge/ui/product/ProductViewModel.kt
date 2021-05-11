@@ -10,11 +10,8 @@ import kotlinx.coroutines.withContext
 import tech.medina.adichallenge.domain.models.DataState
 import tech.medina.adichallenge.domain.models.Product
 import tech.medina.adichallenge.domain.models.Review
-import tech.medina.adichallenge.domain.usecase.IGetAllProductsUseCase
-import tech.medina.adichallenge.domain.usecase.IGetProductByIdUseCase
 import tech.medina.adichallenge.domain.models.SORT
-import tech.medina.adichallenge.domain.usecase.GetProductReviewsUseCase
-import tech.medina.adichallenge.domain.usecase.IGetProductReviewsUseCase
+import tech.medina.adichallenge.domain.usecase.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -25,6 +22,7 @@ class ProductViewModel @Inject constructor(
     private val dispatcher: CoroutineDispatcher,
     private val getAllProductsUseCase: IGetAllProductsUseCase,
     private val getProductByIdUseCase: IGetProductByIdUseCase,
+    private val searchProductsUseCase: ISearchProductsUseCase,
     private val getProductReviewsUseCase: IGetProductReviewsUseCase
 ): ViewModel() {
 
@@ -54,6 +52,19 @@ class ProductViewModel @Inject constructor(
         viewModelScope.launch {
             savedState.set(KEY_PRODUCT_LOADER, true)
             val result = withContext(dispatcher) { getAllProductsUseCase() }
+            savedState.set(KEY_PRODUCT_LOADER, false)
+            when (result) {
+                is DataState.Success -> savedState.set(KEY_PRODUCT_LIST, result.result)
+                is DataState.Error -> savedState.set(KEY_PRODUCT_ERROR, result.error)
+                is DataState.Loading -> savedState.set(KEY_PRODUCT_LOADER, true)
+            }
+        }
+    }
+
+    fun searchProducts(query: String) {
+        viewModelScope.launch {
+            savedState.set(KEY_PRODUCT_LOADER, true)
+            val result = withContext(dispatcher) { searchProductsUseCase(query) }
             savedState.set(KEY_PRODUCT_LOADER, false)
             when (result) {
                 is DataState.Success -> savedState.set(KEY_PRODUCT_LIST, result.result)
