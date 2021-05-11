@@ -9,7 +9,6 @@ import javax.inject.Inject
 class ProductEntityMapper @Inject constructor() : IMapper<ProductDto, ProductEntity> {
     override fun map(input: ProductDto): ProductEntity =
         ProductEntity(
-            id = 0,
             currency = input.currency ?: "",
             description = input.description ?: "",
             image = input.image ?: "",

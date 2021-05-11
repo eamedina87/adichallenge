@@ -2,13 +2,14 @@ package tech.medina.adichallenge.data.db.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import tech.medina.adichallenge.data.db.entity.ProductEntity
 
 @Dao
 interface ProductDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(vararg product: ProductEntity)
 
     @Query("SELECT * FROM product")
@@ -16,7 +17,7 @@ interface ProductDao {
 
     @Query("""
         SELECT * FROM product
-        JOIN product_fts ON product_fts.remoteId = product.remoteId
+        JOIN product_fts ON product_fts.name = product.name
         WHERE product_fts MATCH :query
     """)
     fun search(query: String): List<ProductEntity>
