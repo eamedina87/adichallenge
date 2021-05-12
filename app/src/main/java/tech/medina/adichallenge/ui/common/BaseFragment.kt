@@ -10,6 +10,7 @@ import androidx.annotation.Nullable
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import androidx.viewbinding.ViewBinding
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -19,6 +20,9 @@ abstract class BaseFragment : Fragment() {
 
     @Inject
     lateinit var navigator: Navigator
+
+    @Inject
+    lateinit var imageLoader: ImageLoader
 
     abstract val viewModel : ViewModel?
 

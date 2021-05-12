@@ -16,9 +16,20 @@ abstract class DomainModuleBinds {
     ): IGetAllProductsUseCase
 
     @Binds
+    abstract fun searchProductsUseCase(
+            useCase: SearchProductsUseCase
+    ): ISearchProductsUseCase
+
+    @Binds
     abstract fun bindGetProductByIdUseCase(
         useCase: GetProductByIdUseCase
     ): IGetProductByIdUseCase
+
+    @Binds
+    abstract fun bindGetProductReviewsUseCase(
+        useCase: GetProductReviewsUseCase
+    ): IGetProductReviewsUseCase
+
 
     @Binds
     abstract fun bindAddProductReviewUseCase(

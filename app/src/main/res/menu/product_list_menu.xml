@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/list_search"
+        android:title="@string/list_menu_search"
+        android:icon="@drawable/ic_search"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/list_gallery"
+        android:title="@string/list_menu_gallery"
+        android:icon="@drawable/ic_list_gallery"
+        android:checkable="true"
+        app:showAsAction="always"
+        >
+        <menu>
+            <group android:checkableBehavior="single">
+                <item android:id="@+id/list_menu_gallery_list"
+                    android:checked="true"
+                    android:title="@string/list_menu_gallery_list"/>
+                <item android:id="@+id/list_menu_gallery_grid"
+                    android:title="@string/list_menu_gallery_grid"/>
+            </group>
+        </menu>
+    </item>
+
+    <item android:id="@+id/list_sort"
+        android:title="@string/list_menu_sort"
+        android:icon="@drawable/ic_list_sort"
+        app:showAsAction="ifRoom"
+        >
+        <menu>
+            <group android:checkableBehavior="single">
+                <item android:id="@+id/list_menu_sort_az"
+                    android:title="@string/list_menu_sort_az"/>
+                <item android:id="@+id/list_menu_sort_za"
+                    android:title="@string/list_menu_sort_za"/>
+                <item android:id="@+id/list_menu_sort_price_low_high"
+                    android:title="@string/list_menu_sort_price_low_high"/>
+                <item android:id="@+id/list_menu_sort_price_high_low"
+                    android:title="@string/list_menu_sort_price_high_low"/>
+            </group>
+        </menu>
+    </item>
+
+
+</menu>

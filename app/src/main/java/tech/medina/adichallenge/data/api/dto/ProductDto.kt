@@ -1,6 +1,7 @@
 package tech.medina.adichallenge.data.api.dto
 
 import com.google.gson.annotations.SerializedName
+import java.math.BigDecimal
 
 data class ProductDto(
     @SerializedName("currency")
@@ -15,6 +16,4 @@ data class ProductDto(
     val name: String?,
     @SerializedName("price")
     val price: Double?,
-    @SerializedName("reviews")
-    val reviews: List<ReviewDto?>?
 )

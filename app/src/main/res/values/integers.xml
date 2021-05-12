@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="product_grid_columns">2</integer>
+    <integer name="product_name_max_lines">3</integer>
+    <integer name="review_message_max_character">250</integer>
+</resources>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AdiChallenge">
+        <item name="android:textColor">@color/text_main</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="AdiChallenge.Toolbar" parent="AdiChallenge">
+        <item name="fontFamily">sans-serif-condensed-medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="AdiChallenge.Text" parent="AdiChallenge">
+        <item name="fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="AdiChallenge.Text.Product" parent="AdiChallenge.Text"/>
+
+    <style name="AdiChallenge.Text.Product.List" parent="AdiChallenge.Text.Product">
+        <item name="android:background">@color/text_background</item>
+    </style>
+
+    <style name="AdiChallenge.Text.Product.List.Name" parent="AdiChallenge.Text.Product.List">
+        <item name="fontFamily">sans-serif-black</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+    </style>
+
+    <style name="AdiChallenge.Text.Product.List.Price" parent="AdiChallenge.Text.Product.List.Name">
+        <item name="fontFamily">sans-serif-condensed</item>
+    </style>
+
+    <style name="AdiChallenge.Text.Product.Detail.Name" parent="AdiChallenge.Text.Product.List.Name">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="AdiChallenge.Text.Product.Detail.Price" parent="AdiChallenge.Text.Product.List.Price">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="AdiChallenge.Text.Product.Detail.Section.Title" parent="AdiChallenge.Text.Product.Detail.Name">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="AdiChallenge.Text.Product.Detail.Section" parent="AdiChallenge.Text">
+        <item name="android:paddingStart">8dp</item>
+    </style>
+
+    <style name="AdiChallenge.Text.Product.Detail.Review" parent="AdiChallenge.Text"/>
+
+    <style name="AdiChallenge.Text.Product.Detail.Review.Number" parent="AdiChallenge.Text.Product.Detail.Review">
+        <item name="android:textSize">48sp</item>
+        <item name="fontFamily">sans-serif-condensed</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="AdiChallenge.Text.Product.Detail.Review.Total" parent="AdiChallenge.Text.Product.Detail.Review">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="AdiChallenge.Text.Review" parent="AdiChallenge.Text"/>
+
+    <style name="AdiChallenge.Text.Review.Number" parent="AdiChallenge.Text.Review">
+        <item name="android:textSize">24sp</item>
+        <item name="fontFamily">sans-serif-condensed</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="AdiChallenge.Text.Review.Message" parent="AdiChallenge.Text.Review">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="AdiChallenge.Button" parent="AdiChallenge">
+        <item name="fontFamily">sans-serif-condensed</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:background">@color/button_background</item>
+        <item name="android:textColor">@color/button_color</item>
+    </style>
+
+</resources>

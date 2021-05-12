@@ -1,4 +1,47 @@
 <resources>
     <string name="app_name">AdiChallenge</string>
     <string name="title_item_detail">Item Detail</string>
+
+    <!--  PRODUCT LIST -->
+    <string name="list_menu_sort">Sort</string>
+    <string name="list_menu_sort_default">Default</string>
+    <string name="list_menu_sort_az">A-Z</string>
+    <string name="list_menu_sort_za">Z-A</string>
+    <string name="list_menu_sort_price_low_high">Price (low-high)</string>
+    <string name="list_menu_sort_price_high_low">Price (high-low)</string>
+    <string name="list_menu_gallery">Gallery</string>
+    <string name="list_menu_gallery_list">List</string>
+    <string name="list_menu_gallery_grid">Grid</string>
+    <string name="list_menu_search">Search</string>
+
+    <string name="button_retry">Retry</string>
+
+    <string name="product_list_title">Products</string>
+    <string name="product_list_button">See Details</string>
+    <string name="product_price">%s%.0f</string>
+    <string name="product_price_inverted">%.0f%s</string>
+    <string name="currency_euro">&#8364;</string>
+    <string name="product_list_message_empty">No products were found.</string>
+
+    <string name="product_detail_descriptions_title">Description</string>
+    <string name="button_close">Close</string>
+    <string name="product_detail_message_error">An error occurred. Please try again later.</string>
+    <string name="product_detail_reviews_title">Reviews</string>
+    <string name="product_detail_reviews_total">%d reviews</string>
+    <string name="product_detail_reviews_message_empty">No reviews found for this product.</string>
+    <string name="product_detail_reviews_total_default">No reviews</string>
+    <string name="product_detail_reviews_rating_default">-</string>
+    <string name="product_detail_reviews_button_view">View All</string>
+    <string name="product_detail_reviews_button_add">Add Review</string>
+
+    <string name="product_review_title">Add Review</string>
+    <string name="product_review_rating_text">%.1f</string>
+    <string name="product_review_rating_default">0</string>
+    <string name="product_review_hint">Write your opinion, so you help other users decide</string>
+    <string name="product_review_button">Send</string>
+    <string name="product_review_message_rating">Please select a rating</string>
+    <string name="product_review_message_text">Please write a message</string>
+    <string name="product_review_message_error">An error occurred sending the review. Please retry.</string>
+    <string name="product_review_message_success">Review added successfully</string>
+
 </resources>

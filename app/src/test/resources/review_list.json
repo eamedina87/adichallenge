@@ -1,0 +1,44 @@
+[
+    {
+        "productId": "FI444",
+        "locale": "en-US",
+        "rating": 3,
+        "text": "this product is the bestaaaa"
+    },
+    {
+        "productId": "FI444",
+        "locale": "en-US",
+        "rating": 1,
+        "text": "Amazing!"
+    },
+    {
+        "productId": "FI444",
+        "locale": "en-US",
+        "rating": 4,
+        "text": "Love it!"
+    },
+    {
+        "productId": "FI444",
+        "locale": "en-US",
+        "rating": 3,
+        "text": "The best product for the athlete"
+    },
+    {
+        "productId": "FI444",
+        "locale": "en-US",
+        "rating": 4,
+        "text": "Fantastic!"
+    },
+    {
+        "productId": "FI444",
+        "locale": "en-US",
+        "rating": 5,
+        "text": "high quality!"
+    },
+    {
+        "productId": "FI444",
+        "locale": "en-US",
+        "rating": 2,
+        "text": "Best tech summit talk!"
+    }
+]
