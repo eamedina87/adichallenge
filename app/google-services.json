@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "545474717340",
+    "project_id": "adichallenge-test",
+    "storage_bucket": "adichallenge-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545474717340:android:df5a73f877b5c1cb35af59",
+        "android_client_info": {
+          "package_name": "tech.medina.adichallenge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "545474717340-3a8shr5065nfn5f8h5telbmm7p825s9a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYeZOWmUjFVHwo3KdDB3d1w6cXNxSsKPE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "545474717340-3a8shr5065nfn5f8h5telbmm7p825s9a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545474717340:android:7bc99d92c4869ffd35af59",
+        "android_client_info": {
+          "package_name": "tech.medina.adichallenge.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "545474717340-3a8shr5065nfn5f8h5telbmm7p825s9a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYeZOWmUjFVHwo3KdDB3d1w6cXNxSsKPE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "545474717340-3a8shr5065nfn5f8h5telbmm7p825s9a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
