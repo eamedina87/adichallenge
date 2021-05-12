@@ -14,5 +14,12 @@ object FakeModels {
         return list
     }
     val product = Product(currency = "$", description = "the description", id = "ABCD", imageUrl = "theurl", name = "PRODUCT NAME", price = 60.0)
-    
+    fun productList(): List<Product> {
+        val list = arrayListOf<Product>()
+        repeat(3) {
+            list.add(product)
+        }
+        return list
+    }
+
 }

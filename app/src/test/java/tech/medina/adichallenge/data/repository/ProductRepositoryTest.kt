@@ -26,6 +26,7 @@ class ProductRepositoryTest : BaseTest() {
     private val database = mockk<AdiChallengeDatabase> {
         coEvery { productDao().getAll() } returns FakeEntity.productList
         coEvery { productDao().insert(any()) } just Runs
+        coEvery { productDao().search(any()) } returns FakeEntity.productList
     }
 
     private val mapper = mockk<IMapper<ProductDto, ProductEntity>> {
@@ -57,6 +58,34 @@ class ProductRepositoryTest : BaseTest() {
         val product = repository.getProductById(id)
         coVerify {
             api.getProductById(id)
+        }
+        with(product) {
+            Truth.assertThat(this).isNotNull()
+            Truth.assertThat(this).isEqualTo(expectedValue)
+        }
+    }
+
+    @Test
+    fun `search product with valid query successfully`() = dispatcher.runBlockingTest {
+        val expectedValue = FakeEntity.productList
+        val repository = ProductRepository(api, database, mapper)
+        val product = repository.searchProducts("abc")
+        coVerify {
+            database.productDao().search(any())
+        }
+        with(product) {
+            Truth.assertThat(this).isNotNull()
+            Truth.assertThat(this).isEqualTo(expectedValue)
+        }
+    }
+
+    @Test
+    fun `search product with empty query successfully`() = dispatcher.runBlockingTest {
+        val expectedValue = FakeEntity.productList
+        val repository = ProductRepository(api, database, mapper)
+        val product = repository.searchProducts("")
+        coVerify {
+            database.productDao().getAll()
         }
         with(product) {
             Truth.assertThat(this).isNotNull()

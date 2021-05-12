@@ -8,5 +8,12 @@ object FakeEntity {
 
     val product = ProductEntity(currency = "$", description = "the description", remoteId = "ABCD", image = "theurl", name = "PRODUCT NAME", price = 60.0)
     val productList = listOf(product)
+    fun productList(): List<ProductEntity> {
+        val list = arrayListOf<ProductEntity>()
+        repeat(3) {
+            list.add(product)
+        }
+        return list
+    }
 
 }
