@@ -7,6 +7,11 @@ import tech.medina.adichallenge.databinding.ActivityDefaultBinding
 import tech.medina.adichallenge.ui.common.BaseActivity
 import tech.medina.adichallenge.ui.utils.Constants
 
+/**
+ * An activity representing a review detail.
+ * Used for adding a new review.
+ */
+
 class ReviewDetailActivity : BaseActivity() {
 
     private lateinit var binding: ActivityDefaultBinding
@@ -19,7 +24,7 @@ class ReviewDetailActivity : BaseActivity() {
     override fun initView(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
             val productId = intent?.extras?.getString(Constants.INTENT_EXTRA_PRODUCT_ID, "") ?: ""
-            addFragment(R.id.frameLayout, ReviewDetailFragment.create(productId), "list")
+            addFragment(R.id.frameLayout, ReviewDetailFragment.create(productId), "review_detail")
         }
     }
 

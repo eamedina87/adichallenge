@@ -7,22 +7,17 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import tech.medina.adichallenge.R
 import tech.medina.adichallenge.databinding.FragmentItemDetailBinding
 import tech.medina.adichallenge.domain.models.Product
 import tech.medina.adichallenge.domain.models.Review
 import tech.medina.adichallenge.ui.common.BaseFragment
 import tech.medina.adichallenge.ui.product.ProductViewModel
-import tech.medina.adichallenge.ui.utils.invisible
 import tech.medina.adichallenge.ui.utils.visible
 
 
 /**
- * A fragment representing a single Item detail screen.
- * This fragment is either contained in a [ItemListActivity]
- * in two-pane mode (on tablets) or a [ProductDetailActivity]
- * on handsets.
+ * A fragment representing a product detail screen.
  */
 
 class ProductDetailFragment : BaseFragment() {
@@ -189,7 +184,6 @@ class ProductDetailFragment : BaseFragment() {
         productId?.let {
             viewModel.getProductById(it)
         }
-
     }
 
     private fun onRetryReviewsButtonClick(view: View) {

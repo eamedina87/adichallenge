@@ -26,7 +26,7 @@ class ProductDetailActivity : BaseActivity() {
     override fun initView(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
             val productId = intent?.extras?.getString(Constants.INTENT_EXTRA_PRODUCT_ID, "") ?: ""
-            addFragment(R.id.frameLayout, ProductDetailFragment.create(productId), "list")
+            addFragment(R.id.frameLayout, ProductDetailFragment.create(productId), "detail")
         }
     }
 

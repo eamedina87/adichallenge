@@ -2,12 +2,10 @@ package tech.medina.adichallenge.ui.common
 
 import android.content.Intent
 import android.os.Bundle
-import tech.medina.adichallenge.ui.common.dialog.DialogWithTwoOptions
 import tech.medina.adichallenge.ui.product.detail.ProductDetailActivity
 import tech.medina.adichallenge.ui.review.detail.ReviewDetailActivity
 import tech.medina.adichallenge.ui.review.list.ReviewListActivity
 import tech.medina.adichallenge.ui.utils.Constants
-import tech.medina.adichallenge.ui.utils.Utils
 import javax.inject.Inject
 import javax.inject.Singleton
 
