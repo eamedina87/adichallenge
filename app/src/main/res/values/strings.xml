@@ -18,7 +18,8 @@
 
     <string name="product_list_title">Products</string>
     <string name="product_list_button">See Details</string>
-    <string name="product_price">%s%s</string>
+    <string name="product_price">%s%.0f</string>
+    <string name="product_price_inverted">%.0f%s</string>
     <string name="currency_euro">&#8364;</string>
     <string name="product_list_message_empty">No products were found.</string>
 

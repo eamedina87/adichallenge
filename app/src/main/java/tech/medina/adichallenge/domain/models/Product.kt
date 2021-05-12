@@ -20,9 +20,9 @@ data class Product(
     fun getFormattedPrice(context: Context): String {
         val euro = context.getString(R.string.currency_euro)
         return if (currency.isBlank() || currency == euro) {
-            context.getString(R.string.product_price, price.toString(), euro)
+            context.getString(R.string.product_price_inverted, price, euro)
         } else {
-            context.getString(R.string.product_price, currency, price.toString())
+            context.getString(R.string.product_price, currency, price)
         }
     }
 
