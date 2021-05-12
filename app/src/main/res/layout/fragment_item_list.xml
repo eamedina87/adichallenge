@@ -18,19 +18,19 @@
         app:title="@string/product_list_title"
         app:titleTextAppearance="@style/AdiChallenge.Toolbar"
         android:background="@color/background"
-        android:elevation="4dp"
         />
 
-    <EditText
+    <androidx.appcompat.widget.SearchView
         android:id="@+id/search"
+        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible"
+        />
+
 
     <FrameLayout
         android:layout_width="match_parent"

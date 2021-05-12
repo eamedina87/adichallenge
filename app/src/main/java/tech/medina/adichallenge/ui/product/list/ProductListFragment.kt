@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.isEmpty
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -44,19 +45,8 @@ class ProductListFragment : BaseFragment() {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-        binding.button?.setOnClickListener {
-            viewModel.searchProducts(binding.search?.text.toString().sanitize())
-        }
+        setupSearch()
         initObservers()
-    }
-
-    private fun setupToolbar() {
-        if (binding.toolbar?.menu?.isEmpty() == true) {
-            binding.toolbar?.apply {
-                inflateMenu(R.menu.product_list_menu)
-                setOnMenuItemClickListener(::onMenuItemClicked)
-            }
-        }
     }
 
     private fun initObservers() {
@@ -81,6 +71,15 @@ class ProductListFragment : BaseFragment() {
                 onGetProductsError(error)
             }
         })
+    }
+
+    private fun setupToolbar() {
+        if (binding.toolbar?.menu?.isEmpty() == true) {
+            binding.toolbar?.apply {
+                inflateMenu(R.menu.product_list_menu)
+                setOnMenuItemClickListener(::onMenuItemClicked)
+            }
+        }
     }
 
     private fun onGetProductsError(error: Any?) {
@@ -151,6 +150,11 @@ class ProductListFragment : BaseFragment() {
     private fun onMenuItemClicked(item: MenuItem): Boolean {
         item.isChecked = true
         return when (item.itemId) {
+            R.id.list_search -> {
+                item.isVisible = false
+                showSearch()
+                true
+            }
             R.id.list_menu_sort_az -> sortProductsBy(SORT.AZ)
             R.id.list_menu_sort_za -> sortProductsBy(SORT.ZA)
             R.id.list_menu_sort_price_low_high -> sortProductsBy(SORT.PRICE_LOW_HIGH)
@@ -181,6 +185,40 @@ class ProductListFragment : BaseFragment() {
             viewModel.sortProductsBy(newSort)
         }
         return true
+    }
+
+    //SEARCH
+
+    private fun setupSearch() {
+        binding.search?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
+            override fun onQueryTextSubmit(query: String?): Boolean = handleQuery(query)
+
+            override fun onQueryTextChange(newText: String?): Boolean = handleQuery(newText)
+
+        })
+        binding.search?.setOnCloseListener {
+            viewModel.searchProducts("")
+            showSearch(false)
+            false
+        }
+
+    }
+
+    private fun handleQuery(query: String?): Boolean =
+        if (query.isNullOrBlank()) {
+            false
+        } else {
+            viewModel.searchProducts(query.sanitize())
+            true
+        }
+
+    private fun showSearch(visible: Boolean = true) {
+        binding.search?.apply {
+            visible(visible)
+            if (visible) isIconified = false
+        }
+        binding.toolbar?.menu?.findItem(R.id.list_search)?.isVisible = !visible
     }
 
 }

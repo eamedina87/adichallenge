@@ -12,6 +12,7 @@
     <string name="list_menu_gallery">Gallery</string>
     <string name="list_menu_gallery_list">List</string>
     <string name="list_menu_gallery_grid">Grid</string>
+    <string name="list_menu_search">Search</string>
 
     <string name="button_retry">Retry</string>
 
