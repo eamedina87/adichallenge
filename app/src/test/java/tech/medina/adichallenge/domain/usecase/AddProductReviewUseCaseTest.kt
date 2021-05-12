@@ -34,7 +34,7 @@ class AddProductReviewUseCaseTest : BaseTest() {
     fun `post review successfully`() = dispatcher.runBlockingTest {
         val id = "ABC01"
         val useCase = AddProductReviewUseCase(repository, reviewMapper)
-        val result = useCase(id, FakeModels.review)
+        val result = useCase(id, 3, "the message")
         coVerify {
             reviewMapper.map(any())
             repository.addReviewForProductWithId(id, any())
@@ -52,7 +52,7 @@ class AddProductReviewUseCaseTest : BaseTest() {
         coEvery { repository.getReviewsForProductWithId(any()) } throws Exception("An error occurred")
         val id = "ABC01"
         val useCase = AddProductReviewUseCase(repository, reviewMapper)
-        val result = useCase(id, FakeModels.review)
+        val result = useCase(id, 3, "the message")
         coVerify {
             reviewMapper.map(any())
             repository.addReviewForProductWithId(id, any())

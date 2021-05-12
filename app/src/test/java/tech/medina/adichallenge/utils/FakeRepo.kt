@@ -6,11 +6,11 @@ import tech.medina.adichallenge.domain.models.Product
 
 object FakeRepo {
 
-    private val productMapper = ProductMapper(reviewMapper = ReviewMapper(), )
+    private val productMapper = ProductMapper()
 
-    val productList: List<Product> = FakeApi.productList.map {
+    val productList: List<Product> = FakeEntity.productList.map {
         productMapper.map(it)
     }
-    val product: Product = productMapper.map(FakeApi.product)
+    val product: Product = productMapper.map(FakeEntity.product)
 
 }

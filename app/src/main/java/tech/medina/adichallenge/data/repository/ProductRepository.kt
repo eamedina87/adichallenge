@@ -21,7 +21,7 @@ class ProductRepository @Inject constructor(
 
     override suspend fun getAllProducts(): List<ProductEntity> {
         val apiProducts = api.getAllProducts()
-        database.productDao().insert(* apiProducts.map { mapper.map(it)}.toTypedArray())
+        database.productDao().insert(apiProducts.map { mapper.map(it)})
         return database.productDao().getAll()
     }
 

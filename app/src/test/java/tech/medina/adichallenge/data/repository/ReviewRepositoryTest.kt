@@ -15,13 +15,13 @@ import tech.medina.adichallenge.utils.FakeApi
 class ReviewRepositoryTest : BaseTest() {
 
     private val api = mockk<ReviewApi> {
-        coEvery { getAllReviewsForProductWithId(any()) } returns FakeApi.reviewList
+        coEvery { getAllReviewsForProductWithId(any()) } returns FakeApi.reviewList()
         coEvery { postReviewForProductWithId(any(), any())} returns FakeApi.review
     }
 
     @Test
     fun `get all reviews successfully`() = dispatcher.runBlockingTest {
-        val expectedValue = FakeApi.reviewList
+        val expectedValue = FakeApi.reviewList()
         val productId = "ABCD01"
         val repository = ReviewRepository(api)
         val reviews = repository.getReviewsForProductWithId(productId)

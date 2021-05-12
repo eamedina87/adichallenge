@@ -7,6 +7,7 @@ import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Test
 import tech.medina.adichallenge.base.BaseTest
 import tech.medina.adichallenge.data.api.dto.ProductDto
+import tech.medina.adichallenge.data.db.entity.ProductEntity
 import tech.medina.adichallenge.data.mapper.IMapper
 import tech.medina.adichallenge.data.mapper.ProductMapper
 import tech.medina.adichallenge.data.mapper.ReviewMapper
@@ -15,6 +16,7 @@ import tech.medina.adichallenge.domain.models.DataState
 import tech.medina.adichallenge.domain.models.Product
 import tech.medina.adichallenge.domain.models.Review
 import tech.medina.adichallenge.utils.FakeApi
+import tech.medina.adichallenge.utils.FakeEntity
 import tech.medina.adichallenge.utils.FakeModels
 import tech.medina.adichallenge.utils.FakeRepo
 
@@ -22,10 +24,10 @@ import tech.medina.adichallenge.utils.FakeRepo
 class GetAllProductsUseCaseTest : BaseTest() {
 
     private val repository = mockk<IProductRepository>() {
-        coEvery { getAllProducts() } returns FakeApi.productList
+        coEvery { getAllProducts() } returns FakeEntity.productList
         coEvery { getProductById(any()) } returns FakeApi.product
     }
-    private val productMapper = mockk<IMapper<ProductDto, Product>> {
+    private val productMapper = mockk<IMapper<ProductEntity, Product>> {
         every { map(any()) } returns FakeModels.product
     }
 

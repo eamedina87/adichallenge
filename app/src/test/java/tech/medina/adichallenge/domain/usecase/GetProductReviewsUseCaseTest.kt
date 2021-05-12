@@ -21,7 +21,7 @@ import tech.medina.adichallenge.utils.FakeModels
 class GetProductReviewsUseCaseTest : BaseTest() {
 
     private val repository = mockk<IReviewRepository>() {
-        coEvery { getReviewsForProductWithId(any()) } returns FakeApi.reviewList
+        coEvery { getReviewsForProductWithId(any()) } returns FakeApi.reviewList()
     }
     private val reviewMapper = mockk<IMapper<ReviewDto, Review>> {
         every { map(any()) } returns FakeModels.review
@@ -30,17 +30,18 @@ class GetProductReviewsUseCaseTest : BaseTest() {
     @Test
     fun `get all reviews successfully`() = dispatcher.runBlockingTest {
         val id = "ABC01"
-        val expectedResult = FakeApi.reviewList
+        val expectedResult = FakeModels.reviewList()
         val useCase = GetProductReviewsUseCase(repository, reviewMapper)
         val result = useCase(id)
         coVerify {
             repository.getReviewsForProductWithId(id)
-            //productMapper.map(any())
+            reviewMapper.map(any())
         }
         with (result) {
             Truth.assertThat(this).isNotNull()
             Truth.assertThat(this is DataState.Success)
-            Truth.assertThat(this).isEqualTo(expectedResult)
+            this as DataState.Success
+            Truth.assertThat(this.result).isEqualTo(expectedResult)
         }
     }
 

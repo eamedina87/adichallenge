@@ -10,19 +10,19 @@ import tech.medina.adichallenge.data.db.entity.ProductEntity
 interface ProductDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(vararg product: ProductEntity)
+    suspend fun insert(list: List<ProductEntity>)
 
     @Query("SELECT * FROM product")
-    fun getAll(): List<ProductEntity>
+    suspend fun getAll(): List<ProductEntity>
 
     @Query("""
     SELECT product.* FROM product 
     JOIN product_fts ON (product_fts.remoteId = product.remoteId) 
     WHERE product_fts MATCH :query
     """)
-    fun search(query: String): List<ProductEntity>
+    suspend fun search(query: String): List<ProductEntity>
 
     @Query("DELETE FROM product")
-    fun deleteAll()
+    suspend fun deleteAll()
 
 }
