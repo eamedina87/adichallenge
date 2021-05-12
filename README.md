@@ -32,7 +32,7 @@ The app has two environments set up:
 
 To set the IP address of the server, we must do it in  [gradle.properties](gradle.properties). The properties to be modified are ```API_BASE_PRODUCT_URL_PROD``` where we set the URL of the products service, and ```API_BASE_REVIEW_URL_PROD``` where we set the URl of the reviews service.
 
-It is also fundamental to add the URLs in the network security fil [security_config.xml](app/src/main/res/xml/network_security_config.xml), else a connection problem will occurr.
+It is also fundamental to add the URLs in the network security file [security_config.xml](app/src/main/res/xml/security_config.xml), else a connection problem will occurr.
 
 ## Features
 
