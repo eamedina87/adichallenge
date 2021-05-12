@@ -23,7 +23,7 @@ class GetAllProductsUseCase @Inject constructor(
                 mapper.map(it)
             })
         } catch (e: Exception) {
-            DataState.Error(e)
+            DataState.Error(e.message)
         }
 
 }

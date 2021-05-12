@@ -21,7 +21,7 @@ class GetProductByIdUseCase @Inject constructor(
             val result = repository.getProductById(id)
             DataState.Success(mapper.map(result))
         } catch (e: Exception) {
-            DataState.Error(e)
+            DataState.Error(e.message)
         }
 
 }

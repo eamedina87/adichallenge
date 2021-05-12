@@ -28,7 +28,7 @@ class AddProductReviewUseCase @Inject constructor(
             val result = repository.addReviewForProductWithId(productId, reviewDto)
             DataState.Success(result == reviewDto)
         } catch (e: Exception) {
-            DataState.Error(e)
+            DataState.Error(e.message)
         }
 
 }
